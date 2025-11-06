@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SCUT-ACIG - Advanced Computing and Intelligence Group">
+    <title>SCUT-ACIG Research Group</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        /* Section */
+        section {
+            background: white;
+            padding: 50px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        section h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        /* About */
+        .about p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        /* Datasets Grid */
+        .datasets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .dataset-card {
+            border: 2px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .dataset-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .dataset-card h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .dataset-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .dataset-card .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .dataset-card .btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Publications */
+        .publication {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+        }
+        
+        .publication h4 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .publication .authors {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .publication .venue {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #e0e0e0;
+        }
+        
+        .team-member h4 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .team-member .role {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        /* Contact */
+        .contact-info {
+            font-size: 16px;
+            line-height: 2;
+            color: #555;
+        }
+        
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+            
+            section {
+                padding: 30px 20px;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>SCUT-ACIG</h1>
+        <p>Advanced Computing and Intelligence Group</p>
+        <p>South China University of Technology</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#datasets">Datasets</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>
+                Welcome to the Advanced Computing and Intelligence Group (ACIG) at South China University of Technology. 
+                Our research focuses on artificial intelligence, computer vision, and deep learning.
+            </p>
+            <p>
+                We are committed to advancing the state-of-the-art in AI research and developing innovative solutions 
+                for real-world problems. Our team consists of dedicated researchers and students working on 
+                cutting-edge projects in machine learning and computer vision.
+            </p>
+        </section>
+
+        <!-- Datasets Section -->
+        <section id="datasets">
+            <h2>Datasets</h2>
+            <div class="datasets-grid">
+                <div class="dataset-card">
+                    <h3>REFN Dataset</h3>
+                    <p>
+                        A comprehensive dataset for [描述您的数据集用途]. 
+                        This dataset contains [数量] samples with high-quality annotations.
+                    </p>
+                    <a href="https://scut-acig.github.io/REFN/" class="btn">Apply for Access</a>
+                </div>
+                
+                <!-- 可以添加更多数据集 -->
+                <div class="dataset-card">
+                    <h3>Future Dataset</h3>
+                    <p>
+                        More datasets coming soon. Stay tuned for updates on our latest research contributions.
+                    </p>
+                    <a href="#contact" class="btn">Coming Soon</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2>Publications</h2>
+            
+            <div class="publication">
+                <h4>Your Paper Title Here</h4>
+                <p class="authors">Author 1, Author 2, Author 3</p>
+                <p class="venue">Conference/Journal Name 2025</p>
+            </div>
+            
+            <div class="publication">
+                <h4>Another Research Paper</h4>
+                <p class="authors">Author 1, Author 2</p>
+                <p class="venue">Conference/Journal Name 2024</p>
+            </div>
+            
+            <!-- 添加更多论文 -->
+        </section>
+
+        <!-- Team Section -->
+        <section id="team">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Team Member">
+                    <h4>Professor Name</h4>
+                    <p class="role">Principal Investigator</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Team Member">
+                    <h4>Researcher Name</h4>
+                    <p class="role">Postdoctoral Researcher</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Team Member">
+                    <h4>Student Name</h4>
+                    <p class="role">PhD Student</p>
+                </div>
+                
+                <!-- 添加更多团队成员 -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:qchm@scut.edu.cn">qchm@scut.edu.cn</a></p>
+                <p><strong>Address:</strong> South China University of Technology, Guangzhou, China</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/SCUT-ACIG" target="_blank">github.com/SCUT-ACIG</a></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SCUT-ACIG. All rights reserved.</p>
+        <p><a href="https://github.com/SCUT-ACIG">GitHub Organization</a></p>
+    </footer>
+</body>
+</html>
