@@ -69,7 +69,7 @@
         
         /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 60px 20px;
         }
@@ -86,7 +86,7 @@
         section h2 {
             font-size: 32px;
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             padding-bottom: 15px;
             border-bottom: 3px solid #3498db;
         }
@@ -99,70 +99,96 @@
             color: #555;
         }
         
-        /* Publications Grid */
-        .publications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
+        /* Paper Card - 横向布局 */
         .paper-card {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 30px;
             border: 2px solid #e0e0e0;
-            padding: 25px;
-            border-radius: 8px;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
             transition: all 0.3s ease;
             background: white;
         }
         
         .paper-card:hover {
             border-color: #3498db;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
         }
         
-        .paper-card h3 {
-            font-size: 20px;
+        /* Paper Image */
+        .paper-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+        
+        .paper-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .paper-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Paper Content */
+        .paper-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .paper-content h3 {
+            font-size: 22px;
             color: #2c3e50;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             line-height: 1.4;
         }
         
-        .paper-card .authors {
+        .paper-content .authors {
             color: #7f8c8d;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 15px;
+            margin-bottom: 10px;
             line-height: 1.5;
         }
         
-        .paper-card .venue {
+        .paper-content .venue {
             color: #e74c3c;
             font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 15px;
+            margin-bottom: 20px;
             display: inline-block;
         }
         
-        .paper-card .description {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .paper-content .description {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
         }
         
+        /* Paper Links */
         .paper-links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         
         .paper-link {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 8px 16px;
+            gap: 6px;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s;
@@ -176,6 +202,7 @@
         .github-link:hover {
             background: #000;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         
         .paper-link-btn {
@@ -186,15 +213,16 @@
         .paper-link-btn:hover {
             background: #2980b9;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
         }
         
-        .demo-link {
-            background: #2ecc71;
+        .arxiv-link {
+            background: #b31b1b;
             color: white;
         }
         
-        .demo-link:hover {
-            background: #27ae60;
+        .arxiv-link:hover {
+            background: #8b0000;
             transform: translateY(-2px);
         }
         
@@ -276,7 +304,39 @@
             text-decoration: none;
         }
         
+        /* Modal for image zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: zoom-out;
+        }
+        
+        .modal img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 95%;
+            max-height: 95%;
+        }
+        
         /* Responsive */
+        @media (max-width: 1024px) {
+            .paper-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .paper-image {
+                min-height: 300px;
+            }
+        }
+        
         @media (max-width: 768px) {
             header h1 {
                 font-size: 32px;
@@ -290,8 +350,8 @@
                 gap: 20px;
             }
             
-            .publications-grid {
-                grid-template-columns: 1fr;
+            .paper-content h3 {
+                font-size: 18px;
             }
         }
     </style>
@@ -334,55 +394,70 @@
         <section id="publications">
             <h2>Publications & Open Source Projects</h2>
             
-            <div class="publications-grid">
-                <!-- PASSNet Paper -->
-                <div class="paper-card">
-                    <h3>PASSNet: Position-Aware Self-Supervised Network for Efficient Point Cloud Registration</h3>
-                    <p class="authors">Author Name 1, Author Name 2, Author Name 3</p>
-                    <p class="venue">Conference/Journal Name 2024</p>
-                    <p class="description">
-                        A novel approach for point cloud registration using self-supervised learning.
-                    </p>
+            <!-- PASSNet Paper -->
+            <div class="paper-card">
+                <div class="paper-image" onclick="openModal('passnet-img')">
+                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet ">
+                </div>
+                <div class="paper-content">
+                    <div>
+                        <h3>PASSNet: Position-Aware Self-Supervised Network for Efficient Point Cloud Registration</h3>
+                        <p class="authors">Author Name 1, Author Name 2, Author Name 3</p>
+                        <p class="venue">CVPR 2024 / IEEE Transactions on Pattern Analysis and Machine Intelligence</p>
+                        <p class="description">
+                            Overview architecture of the PASSNet. The visual module is composed of multiple VSTA modules. 
+                            The audio module provides semantic information for both the MESI and RSSI stages. 
+                            The fusion module is composed of MESI and RSSI stages, which leverage multimodal information 
+                            from various stages to produce the final feature.
+                        </p>
+                    </div>
                     <div class="paper-links">
                         <a href="https://github.com/SCUT-ACIG/PASSNet" class="paper-link github-link" target="_blank">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
-                            GitHub
+                            Code
                         </a>
                         <a href="#" class="paper-link paper-link-btn" target="_blank">
                             📄 Paper
                         </a>
+                        <a href="#" class="paper-link arxiv-link" target="_blank">
+                            arXiv
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- 添加更多论文 - 示例 -->
-                <div class="paper-card">
-                    <h3>Another Research Project Title</h3>
-                    <p class="authors">Author Name 1, Author Name 2</p>
-                    <p class="venue">Conference Name 2024</p>
-                    <p class="description">
-                        Brief description of the research project and its contributions.
-                    </p>
+            <!-- 添加更多论文的模板 -->
+            <div class="paper-card">
+                <div class="paper-image" onclick="openModal('project2-img')">
+                    <img id="project2-img" src="https://via.placeholder.com/450x300/3498db/ffffff?text=Project+Architecture" alt="Project Architecture">
+                </div>
+                <div class="paper-content">
+                    <div>
+                        <h3>Your Next Research Project Title</h3>
+                        <p class="authors">Author 1, Author 2, Author 3, Author 4</p>
+                        <p class="venue">NeurIPS 2024</p>
+                        <p class="description">
+                            Brief description of your research project. Explain the main contributions, 
+                            methodology, and results. This should be concise but informative enough 
+                            to give readers a good understanding of your work.
+                        </p>
+                    </div>
                     <div class="paper-links">
                         <a href="https://github.com/SCUT-ACIG/ProjectName" class="paper-link github-link" target="_blank">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
-                            GitHub
+                            Code
                         </a>
                         <a href="#" class="paper-link paper-link-btn" target="_blank">
                             📄 Paper
                         </a>
-                        <a href="#" class="paper-link demo-link" target="_blank">
-                            🎮 Demo
-                        </a>
                     </div>
                 </div>
-
-                <!-- 您可以继续添加更多论文卡片 -->
-                
             </div>
+
         </section>
 
         <!-- Datasets Section -->
@@ -416,5 +491,32 @@
         <p>&copy; 2025 SCUT-ACIG. All rights reserved.</p>
         <p><a href="https://github.com/SCUT-ACIG">GitHub Organization</a></p>
     </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <img id="modalImg" src="">
+    </div>
+
+    <script>
+        function openModal(imgId) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImg");
+            var img = document.getElementById(imgId);
+            
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+        
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        
+        // ESC key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
