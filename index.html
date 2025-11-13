@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Affective and Cognitive Intelligence Group (ACIG)">
+    <meta name="description" content="SCUT-ACIG - Advanced Computing and Intelligence Group">
     <title>SCUT-ACIG Research Group</title>
     <style>
         * {
@@ -99,7 +99,106 @@
             color: #555;
         }
         
-        /* Datasets Grid */
+        /* Publications Grid */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .paper-card {
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .paper-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .paper-card h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .paper-card .authors {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .paper-card .venue {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .paper-card .description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .paper-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .paper-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .github-link {
+            background: #24292e;
+            color: white;
+        }
+        
+        .github-link:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+        
+        .paper-link-btn {
+            background: #3498db;
+            color: white;
+        }
+        
+        .paper-link-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .demo-link {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .demo-link:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        /* Datasets */
         .datasets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -147,66 +246,6 @@
             background: #2980b9;
         }
         
-        /* Publications */
-        .publication {
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .publication:last-child {
-            border-bottom: none;
-        }
-        
-        .publication h4 {
-            font-size: 18px;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .publication .authors {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-        
-        .publication .venue {
-            color: #3498db;
-            font-weight: 600;
-        }
-        
-        /* Team */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .team-member {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 4px solid #e0e0e0;
-        }
-        
-        .team-member h4 {
-            font-size: 20px;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .team-member .role {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-        
         /* Contact */
         .contact-info {
             font-size: 16px;
@@ -250,6 +289,10 @@
             nav ul {
                 gap: 20px;
             }
+            
+            .publications-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -257,7 +300,7 @@
     <!-- Header -->
     <header>
         <h1>SCUT-ACIG</h1>
-        <p>Affective and Cognitive Intelligence Group </p>
+        <p>Advanced Computing and Intelligence Group</p>
         <p>South China University of Technology</p>
     </header>
 
@@ -265,9 +308,8 @@
     <nav>
         <ul>
             <li><a href="#about">About</a></li>
-            <li><a href="#datasets">Datasets</a></li>
             <li><a href="#publications">Publications</a></li>
-            <li><a href="#team">Team</a></li>
+            <li><a href="#datasets">Datasets</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -278,7 +320,7 @@
         <section id="about" class="about">
             <h2>About Us</h2>
             <p>
-                Welcome to the Affective and Cognitive Intelligence Group (ACIG) at South China University of Technology. 
+                Welcome to the Advanced Computing and Intelligence Group (ACIG) at South China University of Technology. 
                 Our research focuses on artificial intelligence, computer vision, and deep learning.
             </p>
             <p>
@@ -288,6 +330,61 @@
             </p>
         </section>
 
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2>Publications & Open Source Projects</h2>
+            
+            <div class="publications-grid">
+                <!-- PASSNet Paper -->
+                <div class="paper-card">
+                    <h3>PASSNet: Position-Aware Self-Supervised Network for Efficient Point Cloud Registration</h3>
+                    <p class="authors">Author Name 1, Author Name 2, Author Name 3</p>
+                    <p class="venue">Conference/Journal Name 2024</p>
+                    <p class="description">
+                        A novel approach for point cloud registration using self-supervised learning.
+                    </p>
+                    <div class="paper-links">
+                        <a href="https://github.com/SCUT-ACIG/PASSNet" class="paper-link github-link" target="_blank">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="#" class="paper-link paper-link-btn" target="_blank">
+                            📄 Paper
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 添加更多论文 - 示例 -->
+                <div class="paper-card">
+                    <h3>Another Research Project Title</h3>
+                    <p class="authors">Author Name 1, Author Name 2</p>
+                    <p class="venue">Conference Name 2024</p>
+                    <p class="description">
+                        Brief description of the research project and its contributions.
+                    </p>
+                    <div class="paper-links">
+                        <a href="https://github.com/SCUT-ACIG/ProjectName" class="paper-link github-link" target="_blank">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="#" class="paper-link paper-link-btn" target="_blank">
+                            📄 Paper
+                        </a>
+                        <a href="#" class="paper-link demo-link" target="_blank">
+                            🎮 Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 您可以继续添加更多论文卡片 -->
+                
+            </div>
+        </section>
+
         <!-- Datasets Section -->
         <section id="datasets">
             <h2>Datasets</h2>
@@ -295,65 +392,11 @@
                 <div class="dataset-card">
                     <h3>REFN Dataset</h3>
                     <p>
-                        A comprehensive dataset for [描述您的数据集用途]. 
-                        This dataset contains [数量] samples with high-quality annotations.
+                        A comprehensive dataset for renewable energy facility inspection. 
+                        This dataset contains high-quality annotations for wind turbine and solar panel defect detection.
                     </p>
                     <a href="https://scut-acig.github.io/REFN/" class="btn">Apply for Access</a>
                 </div>
-                
-                <!-- 可以添加更多数据集 -->
-                <div class="dataset-card">
-                    <h3>Future Dataset</h3>
-                    <p>
-                        More datasets coming soon. Stay tuned for updates on our latest research contributions.
-                    </p>
-                    <a href="#contact" class="btn">Coming Soon</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Publications Section -->
-        <section id="publications">
-            <h2>Publications</h2>
-            
-            <div class="publication">
-                <h4>Your Paper Title Here</h4>
-                <p class="authors">Author 1, Author 2, Author 3</p>
-                <p class="venue">Conference/Journal Name 2025</p>
-            </div>
-            
-            <div class="publication">
-                <h4>Another Research Paper</h4>
-                <p class="authors">Author 1, Author 2</p>
-                <p class="venue">Conference/Journal Name 2024</p>
-            </div>
-            
-            <!-- 添加更多论文 -->
-        </section>
-
-        <!-- Team Section -->
-        <section id="team">
-            <h2>Our Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="https://via.placeholder.com/150" alt="Team Member">
-                    <h4>Professor Name</h4>
-                    <p class="role">Principal Investigator</p>
-                </div>
-                
-                <div class="team-member">
-                    <img src="https://via.placeholder.com/150" alt="Team Member">
-                    <h4>Researcher Name</h4>
-                    <p class="role">Postdoctoral Researcher</p>
-                </div>
-                
-                <div class="team-member">
-                    <img src="https://via.placeholder.com/150" alt="Team Member">
-                    <h4>Student Name</h4>
-                    <p class="role">PhD Student</p>
-                </div>
-                
-                <!-- 添加更多团队成员 -->
             </div>
         </section>
 
