@@ -257,25 +257,26 @@
             transform: translateY(-3px);
         }
         
-        /* Paper Image - 优化后的样式 */
+        /* Paper Image - 自适应高度样式 */
         .paper-image {
             position: relative;
             overflow: hidden;
             border-radius: 8px;
             background: #ffffff;
             cursor: pointer;
-            height: 380px; /* 增加固定高度 */
             border: 1px solid #e8e8e8;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            min-height: 250px; /* 最小高度 */
+            max-height: 500px; /* 最大高度限制 */
         }
         
         .paper-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* 使用cover填充容器 */
+            height: auto; /* 自适应高度 */
+            object-fit: contain; /* 保持图片完整显示 */
             object-position: center;
             transition: transform 0.4s ease;
             /* 优化图片渲染质量 */
@@ -284,6 +285,7 @@
             image-rendering: -moz-crisp-edges;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            display: block;
         }
         
         .paper-image:hover {
@@ -548,7 +550,8 @@
             }
             
             .paper-image {
-                height: 350px;
+                min-height: 220px;
+                max-height: 450px;
             }
         }
         
@@ -589,7 +592,8 @@
             }
             
             .paper-image {
-                height: 280px;
+                min-height: 200px;
+                max-height: 400px;
             }
         }
     </style>
