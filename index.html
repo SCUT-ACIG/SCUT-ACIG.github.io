@@ -296,31 +296,6 @@
             transform: scale(1.08);
         }
         
-        /* 添加图片加载提示 */
-        .paper-image::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #3498db;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            z-index: 1;
-        }
-        
-        .paper-image.loaded::before {
-            display: none;
-        }
-        
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
         /* Paper Content */
         .paper-content {
             display: flex;
@@ -646,7 +621,7 @@
             <!-- PASSNet Paper -->
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('passnet-img')">
-                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet Architecture" onload="imageLoaded(this)">
+                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet Architecture">
                 </div>
                 <div class="paper-content">
                     <div>
@@ -678,7 +653,7 @@
             <!-- REFN Paper -->
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('refn-img')">
-                    <img id="refn-img" src="Images/REFN.png" alt="REFN Database" onload="imageLoaded(this)">
+                    <img id="refn-img" src="Images/REFN.png" alt="REFN Database">
                 </div>
                 <div class="paper-content">
                     <div>
@@ -748,12 +723,7 @@
         <img id="modalImg" src="">
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // 图片加载完成后移除加载动画
-        function imageLoaded(img) {
-            img.parentElement.classList.add('loaded');
-        }
-        
+    <script>
         function openModal(imgId) {
             var modal = document.getElementById("imageModal");
             var modalImg = document.getElementById("modalImg");
