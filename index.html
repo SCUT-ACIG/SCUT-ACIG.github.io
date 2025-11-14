@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SCUT-ACIG - Advanced Computing and Intelligence Group">
+    <meta name="description" content="SCUT-ACIG - Affective and Cognitive Intelligence Group">
     <title>SCUT-ACIG Research Group</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -13,7 +19,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
             background: #f5f5f5;
@@ -56,15 +62,16 @@
             z-index: 10;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 50px 40px;
             text-align: center;
         }
         
         header h1 {
-            font-size: 56px;
-            margin-bottom: 20px;
+            font-family: "Playfair Display", "Georgia", serif;
+            font-size: 48px;
+            margin-bottom: 18px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             background: linear-gradient(135deg, #ffffff 0%, #e8f4f8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -76,35 +83,35 @@
             font-size: 20px;
             font-weight: 600;
             color: #3498db;
-            margin-bottom: 12px;
-            letter-spacing: 3px;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             animation: fadeInUp 0.8s ease 0.2s both;
         }
         
         .header-title-full {
-            font-size: 18px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 400;
             animation: fadeInUp 0.8s ease 0.3s both;
         }
         
         .header-description {
-            font-size: 16px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.7;
             color: rgba(255, 255, 255, 0.8);
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
             font-weight: 300;
             animation: fadeInUp 0.8s ease 0.4s both;
         }
         
         .header-divider {
-            width: 80px;
+            width: 70px;
             height: 3px;
             background: linear-gradient(90deg, transparent, #3498db, transparent);
-            margin: 25px auto;
+            margin: 20px auto;
             animation: expandWidth 0.8s ease 0.5s both;
         }
         
@@ -171,11 +178,11 @@
             color: #2c3e50;
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
-            padding: 20px 35px;
+            font-size: 17px;
+            padding: 22px 40px;
             transition: all 0.3s ease;
             position: relative;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
         
         nav a::before {
@@ -197,36 +204,6 @@
         
         nav a:hover::before {
             width: 70%;
-        }
-        
-        /* Responsive Header */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 36px;
-                letter-spacing: 1px;
-            }
-            
-            .header-content {
-                padding: 60px 20px;
-            }
-            
-            .header-subtitle {
-                font-size: 16px;
-                letter-spacing: 2px;
-            }
-            
-            .header-title-full {
-                font-size: 15px;
-            }
-            
-            .header-description {
-                font-size: 14px;
-            }
-            
-            nav a {
-                padding: 15px 20px;
-                font-size: 14px;
-            }
         }
         
         /* Container */
@@ -388,6 +365,17 @@
             transform: translateY(-2px);
         }
         
+        .dataset-link {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .dataset-link:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+        }
+        
         /* Datasets */
         .datasets-grid {
             display: grid;
@@ -502,14 +490,33 @@
         @media (max-width: 768px) {
             header h1 {
                 font-size: 32px;
+                letter-spacing: 0.5px;
+            }
+            
+            .header-content {
+                padding: 40px 20px;
+            }
+            
+            .header-subtitle {
+                font-size: 15px;
+                letter-spacing: 2px;
+            }
+            
+            .header-title-full {
+                font-size: 14px;
+            }
+            
+            .header-description {
+                font-size: 13px;
             }
             
             section {
                 padding: 30px 20px;
             }
             
-            nav ul {
-                gap: 20px;
+            nav a {
+                padding: 18px 25px;
+                font-size: 15px;
             }
             
             .paper-content h3 {
@@ -519,6 +526,7 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="header-content">
             <div class="header-subtitle">SCUT-ACIG</div>
@@ -548,32 +556,35 @@
         <section id="about" class="about">
             <h2>About Us</h2>
             <p>
-                Welcome to the Advanced Computing and Intelligence Group (ACIG) at South China University of Technology. 
-                Our research focuses on artificial intelligence, computer vision, and deep learning.
+                Welcome to the Affective and Cognitive Intelligence Group (ACIG) at South China University of Technology. 
+                Our research focuses on multimodal sentiment analysis, virtual reality interaction, functional near-infrared spectroscopy (fNIRS), and style transfer.
             </p>
             <p>
-                We are committed to advancing the state-of-the-art in AI research and developing innovative solutions 
-                for real-world problems. Our team consists of dedicated researchers and students working on 
-                cutting-edge projects in machine learning and computer vision.
+                We are committed to advancing the state-of-the-art in affective computing and cognitive intelligence research. 
+                Our team consists of dedicated researchers and students working on cutting-edge projects that address 
+                interdisciplinary challenges and regional industry needs.
             </p>
         </section>
 
         <!-- Publications Section -->
         <section id="publications">
-            <h2>Publications </h2>
+            <h2>Publications & Open Source Projects</h2>
             
             <!-- PASSNet Paper -->
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('passnet-img')">
-                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet ">
+                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet Architecture">
                 </div>
                 <div class="paper-content">
                     <div>
                         <h3>PASSNet: Position-Aware Self-Supervised Network for Efficient Point Cloud Registration</h3>
                         <p class="authors">Author Name 1, Author Name 2, Author Name 3</p>
-                        <p class="venue">CVPR 2024 / IEEE Transactions on Pattern Analysis and Machine Intelligence</p>
-                       
-                            
+                        <p class="venue">CVPR 2024 / IEEE TPAMI</p>
+                        <p class="description">
+                            Overview architecture of the PASSNet. The visual module is composed of multiple VSTA modules. 
+                            The audio module provides semantic information for both the MESI and RSSI stages. 
+                            The fusion module is composed of MESI and RSSI stages, which leverage multimodal information 
+                            from various stages to produce the final feature.
                         </p>
                     </div>
                     <div class="paper-links">
@@ -586,26 +597,28 @@
                         <a href="#" class="paper-link paper-link-btn" target="_blank">
                             📄 Paper
                         </a>
-                        
                     </div>
                 </div>
             </div>
-              <!--REFN Paper -->
+
+            <!-- REFN Paper -->
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('refn-img')">
-                    <img id="refn-img" src="Images/REFN.png" alt="REFN ">
+                    <img id="refn-img" src="Images/REFN.png" alt="REFN Database">
                 </div>
                 <div class="paper-content">
                     <div>
                         <h3>REFN: A Multimodal Database for Emotion Analysis Using Functional Near-Infrared Spectroscopy</h3>
-                        <p class="authors">Dengjun Sun, Chunmei Qing*, Zhili Lai, Wanxiang Luo,Xiangmin Xu</p>
+                        <p class="authors">Dengjun Sun, Chunmei Qing*, Zhili Lai, Wanxiang Luo, Xiangmin Xu</p>
                         <p class="venue">CSIG Conference on Emotional Intelligence 2024</p>
-                       
-                            
+                        <p class="description">
+                            This paper presents REFN, a comprehensive multimodal database designed for emotion analysis research using 
+                            functional near-infrared spectroscopy (fNIRS). The database integrates fNIRS signals with multiple modalities 
+                            to facilitate advanced emotion recognition studies and brain-computer interface applications.
                         </p>
                     </div>
                     <div class="paper-links">
-                        <a href="https://github.com/SCUT-ACIG/REFN" class="paper-link github-link" class="paper-link paper-link-btn" target="_blank">
+                        <a href="https://github.com/SCUT-ACIG/REFN" class="paper-link github-link" target="_blank">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
@@ -614,37 +627,8 @@
                         <a href="https://link.springer.com/chapter/10.1007/978-981-96-5084-2_2" class="paper-link paper-link-btn" target="_blank">
                             📄 Paper
                         </a>
-                        <a href="https://scut-acig.github.io/REFN/" class="paper-link" style="background: #27ae60; color: white;" target="_blank">
-                            🗂️ Dataset 
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- 添加更多论文的模板 -->
-            <div class="paper-card">
-                <div class="paper-image" onclick="openModal('project2-img')">
-                    <img id="project2-img" src="https://via.placeholder.com/450x300/3498db/ffffff?text=Project+Architecture" alt="Project Architecture">
-                </div>
-                <div class="paper-content">
-                    <div>
-                        <h3>Your Next Research Project Title</h3>
-                        <p class="authors">Author 1, Author 2, Author 3, Author 4</p>
-                        <p class="venue">NeurIPS 2024</p>
-                        <p class="description">
-                            Brief description of your research project. Explain the main contributions, 
-                            methodology, and results. This should be concise but informative enough 
-                            to give readers a good understanding of your work.
-                        </p>
-                    </div>
-                    <div class="paper-links">
-                        <a href="https://github.com/SCUT-ACIG/ProjectName" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                            Github
-                        </a>
-                        <a href="#" class="paper-link paper-link-btn" target="_blank">
-                            📄 Paper
+                        <a href="https://scut-acig.github.io/REFN/" class="paper-link dataset-link" target="_blank">
+                            🗂️ Dataset Access
                         </a>
                     </div>
                 </div>
@@ -659,8 +643,8 @@
                 <div class="dataset-card">
                     <h3>REFN Dataset</h3>
                     <p>
-                        A comprehensive dataset for renewable energy facility inspection. 
-                        This dataset contains high-quality annotations for wind turbine and solar panel defect detection.
+                        A comprehensive multimodal database for emotion analysis research using functional near-infrared spectroscopy (fNIRS). 
+                        The database integrates multiple modalities including fNIRS signals, audio, and visual data for advanced emotion recognition studies.
                     </p>
                     <a href="https://scut-acig.github.io/REFN/" class="btn">Apply for Access</a>
                 </div>
