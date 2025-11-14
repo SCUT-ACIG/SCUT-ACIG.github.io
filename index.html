@@ -650,14 +650,15 @@
                 </div>
                 <div class="paper-content">
                     <div>
-                        <h3>PASSNet: Position-Aware Self-Supervised Network for Efficient Point Cloud Registration</h3>
-                        <p class="authors">Author Name 1, Author Name 2, Author Name 3</p>
-                        <p class="venue">CVPR 2024 / IEEE TPAMI</p>
+                        <h3>PASSNet: Progressive Audio-Visual Semantic Spatial-Aware Network for Panoramic Video Saliency Prediction</h3>
+                        <p class="authors">Author names to be updated</p>
+                        <p class="venue">Under Review</p>
                         <p class="description">
-                            Overview architecture of the PASSNet. The visual module is composed of multiple VSTA modules. 
-                            The audio module provides semantic information for both the MESI and RSSI stages. 
-                            The fusion module is composed of MESI and RSSI stages, which leverage multimodal information 
-                            from various stages to produce the final feature.
+                            PASSNet introduces a novel approach to panoramic video saliency prediction by effectively integrating audio-visual information. 
+                            The network employs a spherical vision transformer to handle panoramic distortion and over-the-horizon perception, 
+                            while an audio semantic temporal attention mechanism captures contextual audio information. 
+                            A progressive two-stage fusion strategy calibrates audio temporal semantics with spatial visual perception through cross-modal interactions, 
+                            achieving state-of-the-art performance on benchmark datasets.
                         </p>
                     </div>
                     <div class="paper-links">
@@ -728,7 +729,7 @@
         <section id="contact">
             <h2>Contact Us</h2>
             <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:qchm@scut.edu.cn">qchm@scut.edu.cn</a></p>
+                <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#c2b3a1aaaf82b1a1b7b6eca7a6b7eca1ac"><span class="__cf_email__" data-cfemail="1d6c7e75705d6e7e686933787968337e73">[email&#160;protected]</span></a></p>
                 <p><strong>Address:</strong> South China University of Technology, Guangzhou, China</p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/SCUT-ACIG" target="_blank">github.com/SCUT-ACIG</a></p>
             </div>
@@ -747,7 +748,7 @@
         <img id="modalImg" src="">
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // 图片加载完成后移除加载动画
         function imageLoaded(img) {
             img.parentElement.classList.add('loaded');
@@ -774,13 +775,3 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
-            }
-        });
-        
-        // 阻止模态框图片的点击事件冒泡
-        document.getElementById('modalImg').addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    </script>
-</body>
-</html>
