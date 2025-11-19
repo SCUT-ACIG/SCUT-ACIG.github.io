@@ -6,7 +6,6 @@
     <meta name="description" content="SCUT-ACIG - Affective and Cognitive Intelligence Group">
     <title>SCUT-ACIG Research Group</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -16,6 +15,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth; /* 增加平滑滚动效果 */
         }
         
         body {
@@ -117,34 +120,18 @@
         
         /* Animations */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes expandWidth {
-            from {
-                width: 0;
-            }
-            to {
-                width: 80px;
-            }
+            from { width: 0; }
+            to { width: 80px; }
         }
         
         /* Navigation */
@@ -237,8 +224,107 @@
             margin-bottom: 15px;
             color: #555;
         }
+
+        /* --- NEW: People Section Styles --- */
+        .team-category-title {
+            font-size: 20px;
+            color: #7f8c8d;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* PI grid slightly wider layout if needed */
+        .pi-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        .person-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: #3498db;
+        }
+
+        .person-image-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .person-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #f0f0f0;
+            transition: border-color 0.3s ease;
+        }
+
+        .person-card:hover .person-img {
+            border-color: #3498db;
+        }
+
+        .person-info h4 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .person-role {
+            display: block;
+            font-size: 14px;
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .person-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .person-email {
+            font-size: 13px;
+            color: #95a5a6;
+            text-decoration: none;
+            border-bottom: 1px dotted #bdc3c7;
+            transition: color 0.3s;
+        }
+
+        .person-email:hover {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        /* --- End People Styles --- */
         
-        /* Paper Card - 横向布局 */
+        /* Paper Card */
         .paper-card {
             display: grid;
             grid-template-columns: 500px 1fr;
@@ -257,7 +343,7 @@
             transform: translateY(-3px);
         }
         
-        /* Paper Image - 自适应高度样式 */
+        /* Paper Image */
         .paper-image {
             position: relative;
             overflow: hidden;
@@ -269,17 +355,16 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            min-height: 250px; /* 最小高度 */
-            max-height: 500px; /* 最大高度限制 */
+            min-height: 250px;
+            max-height: 500px;
         }
         
         .paper-image img {
             width: 100%;
-            height: auto; /* 自适应高度 */
-            object-fit: contain; /* 保持图片完整显示 */
+            height: auto;
+            object-fit: contain;
             object-position: center;
             transition: transform 0.4s ease;
-            /* 优化图片渲染质量 */
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             image-rendering: -moz-crisp-edges;
@@ -374,16 +459,6 @@
             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
         }
         
-        .arxiv-link {
-            background: #b31b1b;
-            color: white;
-        }
-        
-        .arxiv-link:hover {
-            background: #8b0000;
-            transform: translateY(-2px);
-        }
-        
         .dataset-link {
             background: #27ae60;
             color: white;
@@ -473,7 +548,7 @@
             text-decoration: none;
         }
         
-        /* Modal for image zoom - 优化后 */
+        /* Modal for image zoom */
         .modal {
             display: none;
             position: fixed;
@@ -497,7 +572,6 @@
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-            /* 确保模态框中的图片也是高清的 */
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
@@ -570,11 +644,25 @@
                 min-height: 200px;
                 max-height: 400px;
             }
+
+            /* People Grid Responsive */
+            .people-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .person-card {
+                padding: 20px 15px;
+            }
+
+            .person-image-container {
+                width: 80px;
+                height: 80px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-content">
             <div class="header-subtitle">SCUT-ACIG</div>
@@ -585,19 +673,17 @@
         </div>
     </header>
 
-    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#people">People</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#datasets">Datasets</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- About Section -->
         <section id="about" class="about">
             <h2>About Us</h2>
             <p>
@@ -611,11 +697,75 @@
             </p>
         </section>
 
-        <!-- Publications Section -->
+        <section id="people">
+            <h2>Our Team</h2>
+            
+            <h3 class="team-category-title">Principal Investigator</h3>
+            <div class="people-grid pi-grid">
+                <div class="person-card">
+                    <div class="person-image-container">
+                        <img src="https://ui-avatars.com/api/?name=Xiangmin+Xu&background=0D8ABC&color=fff&size=256" alt="Xiangmin Xu" class="person-img">
+                    </div>
+                    <div class="person-info">
+                        <h4>Xiangmin Xu</h4>
+                        <span class="person-role">Professor / Ph.D. Supervisor</span>
+                        <p class="person-desc">Research interests: Affective Computing, HCI, Computer Vision.</p>
+                        <a href="mailto:qchm@scut.edu.cn" class="person-email">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        
+            <h3 class="team-category-title">Graduate Students</h3>
+            <div class="people-grid">
+                <div class="person-card">
+                    <div class="person-image-container">
+                        <img src="https://ui-avatars.com/api/?name=Chunmei+Qing&background=random&size=256" alt="Chunmei Qing" class="person-img">
+                    </div>
+                    <div class="person-info">
+                        <h4>Chunmei Qing</h4>
+                        <span class="person-role">Ph.D. Candidate</span>
+                        <p class="person-desc">Focus on: fNIRS, Multimodal Learning.</p>
+                    </div>
+                </div>
+        
+                <div class="person-card">
+                    <div class="person-image-container">
+                        <img src="https://ui-avatars.com/api/?name=Dengjun+Sun&background=random&size=256" alt="Dengjun Sun" class="person-img">
+                    </div>
+                    <div class="person-info">
+                        <h4>Dengjun Sun</h4>
+                        <span class="person-role">Master Student</span>
+                        <p class="person-desc">Focus on: Affective Computing.</p>
+                    </div>
+                </div>
+        
+                <div class="person-card">
+                    <div class="person-image-container">
+                        <img src="https://ui-avatars.com/api/?name=Zhili+Lai&background=random&size=256" alt="Zhili Lai" class="person-img">
+                    </div>
+                    <div class="person-info">
+                        <h4>Zhili Lai</h4>
+                        <span class="person-role">Master Student</span>
+                        <p class="person-desc">Focus on: Deep Learning.</p>
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-image-container">
+                        <img src="https://ui-avatars.com/api/?name=Wanxiang+Luo&background=random&size=256" alt="Wanxiang Luo" class="person-img">
+                    </div>
+                    <div class="person-info">
+                        <h4>Wanxiang Luo</h4>
+                        <span class="person-role">Master Student</span>
+                        <p class="person-desc">Focus on: Neural Networks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="publications">
             <h2>Publications </h2>
             
-            <!-- PASSNet Paper -->
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('passnet-img')">
                     <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet Architecture">
@@ -647,7 +797,6 @@
                 </div>
             </div>
 
-            <!-- REFN Paper -->
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('refn-img')">
                     <img id="refn-img" src="Images/REFN.png" alt="REFN Database">
@@ -680,7 +829,6 @@
 
         </section>
 
-        <!-- Datasets Section -->
         <section id="datasets">
             <h2>Datasets</h2>
             <div class="datasets-grid">
@@ -695,7 +843,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact">
             <h2>Contact Us</h2>
             <div class="contact-info">
@@ -706,13 +853,11 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 SCUT-ACIG. All rights reserved.</p>
         <p><a href="https://github.com/SCUT-ACIG">GitHub Organization</a></p>
     </footer>
 
-    <!-- Image Modal -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img id="modalImg" src="">
@@ -740,3 +885,8 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
