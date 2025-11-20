@@ -809,31 +809,27 @@
             </div>
 
             
-                      <div class="paper-card">
+            <div class="paper-card">
                 <div class="paper-image" onclick="openModal('passnet-img')">
-                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet Architecture">
+                    <img id="passnet-img" src="Images/SPFormer.png" alt="SPFormer Architecture">
                 </div>
                 <div class="paper-content">
                     <div>
-                        <h3>PASSNet: Progressive Audio-Visual Semantic Spatial-Aware Network for Panoramic Video Saliency Prediction</h3>
-                        <p class="authors">Author names to be updated</p>
-                        <p class="venue">Under Review</p>
+                        <h3>Superpoint Transformer for 3D Scene Instance Segmentation</h3>
+                        <p class="authors">Jiahao Sun, Chunmei Qing*, Junpeng Tan, Xiangmin Xu</p>
+                        <p class="venue"> Proceedings of the AAAI Conference on Artificial Intelligence（人工智能顶会, Oral报告）</p>
                         <p class="description">
-                            PASSNet introduces a novel approach to panoramic video saliency prediction by effectively integrating audio-visual information. 
-                            The network employs a spherical vision transformer to handle panoramic distortion and over-the-horizon perception, 
-                            while an audio semantic temporal attention mechanism captures contextual audio information. 
-                            A progressive two-stage fusion strategy calibrates audio temporal semantics with spatial visual perception through cross-modal interactions, 
-                            achieving state-of-the-art performance on benchmark datasets.
+                            Most existing methods realize 3D instance segmentation by extending those models used for 3D object detection or 3D semantic segmentation. However, these non-straightforward methods suffer from two drawbacks: 1) Imprecise bounding boxes or unsatisfactory semantic predictions limit the performance of the overall 3D instance segmentation framework. 2) Existing method requires a time-consuming intermediate step of aggregation. To address these issues, this paper proposes a novel end-to-end 3D instance segmentation method based on Superpoint Transformer, named as SPFormer. It groups potential features from point clouds into superpoints, and directly predicts instances through query vectors without relying on the results of object detection or semantic segmentation. The key step in this framework is a novel query decoder with transformers that can capture the instance information through the superpoint cross-attention mechanism and generate the superpoint masks of the instances. Through bipartite matching based on superpoint masks, SPFormer can implement the network training without the intermediate aggregation step, which accelerates the network. Extensive experiments on ScanNetv2 and S3DIS benchmarks verify that our method is concise yet efficient. Notably, SPFormer exceeds compared state-of-the-art methods by 4.3% on ScanNetv2 hidden test set in terms of mAP and keeps fast inference speed (247ms per frame) simultaneously.
                         </p>
                     </div>
                     <div class="paper-links">
-                        <a href="https://github.com/SCUT-ACIG/PASSNet" class="paper-link github-link" target="_blank">
+                        <a href="https://github.com/sunjiahao1999/SPFormer" class="paper-link github-link" target="_blank">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
                             GitHub
                         </a>
-                        <a href="#" class="paper-link paper-link-btn" target="_blank">
+                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25335" class="paper-link paper-link-btn" target="_blank">
                             📄 Paper
                         </a>
                     </div>
