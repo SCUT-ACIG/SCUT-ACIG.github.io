@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SCUT-ACIG - Affective and Cognitive Interaction Group">
+    <meta name="description" content="SCUT-ACIG - Affective and Cognitive Intelligence Group">
     <title>SCUT-ACIG Research Group</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- Global Reset --- */
         * {
             margin: 0;
             padding: 0;
@@ -28,15 +29,17 @@
             background: #f5f5f5;
         }
         
-        /* Header */
+        /* --- Header (Redesigned for ACIG Logo) --- */
         header {
-            background: linear-gradient(135deg, #1a252f 0%, #2c3e50 50%, #34495e 100%);
+            /* 深蓝到深紫渐变，完美匹配 Logo 氛围 */
+            background: linear-gradient(120deg, #1e4066 0%, #4c2658 100%);
             color: white;
             padding: 0;
             position: relative;
             overflow: hidden;
         }
         
+        /* 右上角光斑：紫粉色，呼应 Logo 右侧 */
         header::before {
             content: '';
             position: absolute;
@@ -44,10 +47,12 @@
             right: -10%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(214, 70, 200, 0.15) 0%, transparent 70%);
             border-radius: 50%;
+            animation: floatBubble 20s infinite ease-in-out;
         }
         
+        /* 左下角光斑：青蓝色，呼应 Logo 左侧 */
         header::after {
             content: '';
             position: absolute;
@@ -55,8 +60,15 @@
             left: -5%;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(52, 152, 219, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.12) 0%, transparent 70%);
             border-radius: 50%;
+            animation: floatBubble 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes floatBubble {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+            100% { transform: translate(0, 0); }
         }
         
         .header-content {
@@ -64,56 +76,51 @@
             z-index: 10;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 50px 40px;
+            padding: 60px 40px 50px;
             text-align: center;
         }
         
+        /* LOGO 样式 */
+        .header-logo {
+            max-width: 200px; /* 根据实际图片调整 */
+            height: auto;
+            display: block;
+            margin: 0 auto 20px auto;
+            /* 增加辉光让 Logo 融入背景 */
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.3));
+            animation: fadeInDown 0.8s ease;
+        }
+
         header h1 {
             font-family: "Playfair Display", "Georgia", serif;
             font-size: 48px;
             margin-bottom: 18px;
             font-weight: 700;
             letter-spacing: 1px;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f4f8 100%);
+            /* 亮白渐变文字 */
+            background: linear-gradient(135deg, #ffffff 0%, #d1e8ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInDown 0.8s ease;
-        }
-        
-        .header-subtitle {
-            font-size: 20px;
-            font-weight: 600;
-            color: #3498db;
-            margin-bottom: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease 0.2s both;
         }
         
         .header-title-full {
             font-size: 16px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(220, 240, 255, 0.9);
             margin-bottom: 12px;
             font-weight: 400;
             animation: fadeInUp 0.8s ease 0.3s both;
         }
         
-        .header-description {
-            font-size: 15px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 750px;
-            margin: 0 auto;
-            font-weight: 300;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-        
         .header-divider {
             width: 70px;
             height: 3px;
-            background: linear-gradient(90deg, transparent, #3498db, transparent);
-            margin: 20px auto;
+            /* 分割线改为青紫渐变 */
+            background: linear-gradient(90deg, transparent, #00d2ff, #d646c8, transparent);
+            margin: 25px auto;
+            opacity: 0.8;
             animation: expandWidth 0.8s ease 0.5s both;
         }
         
@@ -133,7 +140,7 @@
             to { width: 80px; }
         }
         
-        /* Navigation */
+        /* --- Navigation --- */
         nav {
             background: white;
             padding: 0;
@@ -192,14 +199,14 @@
             width: 70%;
         }
         
-        /* Container */
+        /* --- Main Container --- */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 60px 20px;
         }
         
-        /* Section */
+        /* --- Sections --- */
         section {
             background: white;
             padding: 50px;
@@ -216,7 +223,7 @@
             border-bottom: 3px solid #3498db;
         }
         
-        /* About */
+        /* About Text */
         .about p {
             font-size: 16px;
             line-height: 1.8;
@@ -224,7 +231,7 @@
             color: #555;
         }
 
-        /* People Section Styles */
+        /* --- People Section Styles --- */
         .team-category-title {
             font-size: 20px;
             color: #7f8c8d;
@@ -308,44 +315,41 @@
             margin-bottom: 15px;
         }
 
+        /* --- New Email Outline Button Style --- */
         .person-email {
-    display: inline-flex;       /* 让图标和文字水平对齐 */
-    align-items: center;        /* 垂直居中 */
-    gap: 8px;                  /* 图标和文字的间距 */
-    margin-top: 12px;          /* 与上方文字拉开距离 */
-    padding: 6px 16px;         /* 按钮内部留白 */
-    
-    font-size: 13px;
-    font-weight: 500;          /* 稍微加粗一点点，提升质感 */
-    color: #57606f;            /* 深灰色，比纯黑柔和 */
-    background-color: transparent;
-    
-    border: 1px solid #d1d8e0; /* 浅灰色边框，优雅低调 */
-    border-radius: 6px;        /* 微圆角，符合现代学术审美 */
-    text-decoration: none;     /* 去掉下划线 */
-    
-    transition: all 0.2s ease; /* 平滑过渡 */
-}
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #57606f;
+            background-color: transparent;
+            border: 1px solid #d1d8e0;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
 
-    .person-email:hover {
-        color: #3498db;          
-        border-color: #3498db;    
-        background-color: rgba(52, 152, 219, 0.05); 
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15); 
-    }
+        .person-email:hover {
+            color: #3498db;
+            border-color: #3498db;
+            background-color: rgba(52, 152, 219, 0.05);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+        }
     
-    
-    .person-email svg {
-        width: 14px;
-        height: 14px;
-        fill: currentColor; 
-    }
+        .person-email svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
             
-        /* Paper Card */
+        /* --- Paper Card --- */
         .paper-card {
             display: grid;
-            grid-template-columns: 500px 1fr;
+            grid-template-columns: minmax(300px, 40%) 1fr; /* 优化了 Grid 比例 */
             gap: 35px;
             border: 2px solid #e0e0e0;
             padding: 30px;
@@ -385,7 +389,6 @@
             transition: transform 0.4s ease;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-            image-rendering: -moz-crisp-edges;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             display: block;
@@ -488,7 +491,7 @@
             box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
         }
         
-        /* Datasets */
+        /* --- Datasets --- */
         .datasets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -536,7 +539,7 @@
             background: #2980b9;
         }
         
-        /* Contact */
+        /* --- Contact --- */
         .contact-info {
             font-size: 16px;
             line-height: 2;
@@ -552,7 +555,7 @@
             text-decoration: underline;
         }
         
-        /* Footer */
+        /* --- Footer --- */
         footer {
             background: #2c3e50;
             color: white;
@@ -566,7 +569,7 @@
             text-decoration: none;
         }
         
-        /* Modal for image zoom */
+        /* --- Modal (Image Zoom) --- */
         .modal {
             display: none;
             position: fixed;
@@ -610,7 +613,7 @@
             color: #3498db;
         }
         
-        /* Responsive */
+        /* --- Responsive Design --- */
         @media (max-width: 1024px) {
             .paper-card {
                 grid-template-columns: 1fr;
@@ -623,6 +626,12 @@
         }
         
         @media (max-width: 768px) {
+            /* 移动端 Logo 适配 */
+            .header-logo {
+                max-width: 140px;
+                margin-bottom: 20px;
+            }
+
             header h1 {
                 font-size: 32px;
                 letter-spacing: 0.5px;
@@ -632,17 +641,8 @@
                 padding: 40px 20px;
             }
             
-            .header-subtitle {
-                font-size: 15px;
-                letter-spacing: 2px;
-            }
-            
             .header-title-full {
                 font-size: 14px;
-            }
-            
-            .header-description {
-                font-size: 13px;
             }
             
             section {
@@ -663,6 +663,7 @@
                 max-height: 400px;
             }
             
+            /* People Grid Responsive */
             .people-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
@@ -682,7 +683,8 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="header-subtitle">SCUT-ACIG</div>
+            <img src="Images/ACIG_Logo_Transparent.png" alt="ACIG Logo" class="header-logo">
+            
             <h1>Affective and Cognitive Interaction Group</h1>
             <div class="header-divider"></div>
             <p class="header-title-full">South China University of Technology</p>
@@ -726,7 +728,13 @@
                         <h4>Chunmei Qing</h4>
                         <span class="person-role">Professor</span>
                         <p class="person-desc">Research interests: fNIRS, Multimodal Learning, Affective Computing.</p>
-                        <a href="https://yanzhao.scut.edu.cn/open/ExpertInfo.aspx?zjbh=J!hKENfzc90cDg!i4EvJBw==" class="person-email">View Profile</a>
+                        
+                        <a href="https://yanzhao.scut.edu.cn/open/ExpertInfo.aspx?zjbh=J!hKENfzc90cDg!i4EvJBw==" class="person-email" target="_blank">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            View Profile
+                        </a>
                     </div>
                 </div>
             </div>
@@ -739,7 +747,7 @@
                     </div>
                     <div class="person-info">
                         <h4>Dengjun Sun</h4>
-
+                        <span class="person-role">Master Student</span>
                     </div>
                 </div>
         
@@ -749,7 +757,7 @@
                     </div>
                     <div class="person-info">
                         <h4>Zhili Lai</h4>
-
+                        <span class="person-role">Master Student</span>
                     </div>
                 </div>
                 
@@ -759,7 +767,7 @@
                     </div>
                     <div class="person-info">
                         <h4>Wanxiang Luo</h4>
-
+                        <span class="person-role">Master Student</span>
                     </div>
                 </div>
             </div>
@@ -767,18 +775,18 @@
 
         <section id="publications">
             <h2>Publications </h2>
-             <div class="paper-card">
-                <div class="paper-image" onclick="openModal('passnet-img')">
-                    <img id="passnet-img" src="Images/fNIRS-TTT.png" alt="FNIRS-TTT Architecture">
+            
+            <div class="paper-card">
+                <div class="paper-image" onclick="openModal('ttt-img')">
+                    <img id="ttt-img" src="Images/fNIRS-TTT.png" alt="FNIRS-TTT Architecture">
                 </div>
                 <div class="paper-content">
                     <div>
-                        <h3>fNIRS-TTT:Enhancing fNIRS Signal Classification with Test-Time Training by Improved Spatiotemporal Feature Extraction</h3>
-                        <p class="authors">Wanxiang Luo,  Chunmei Qing*,  Junpeng Tan, Yihang Zou,  Xiangmin Xu</p>
-                        <p class="venue"> IEEE International Conference on Bioinformatics and Biomedicine </p>
+                        <h3>fNIRS-TTT: Enhancing fNIRS Signal Classification with Test-Time Training by Improved Spatiotemporal Feature Extraction</h3>
+                        <p class="authors">Wanxiang Luo, Chunmei Qing*, Junpeng Tan, Yihang Zou, Xiangmin Xu</p>
+                        <p class="venue">IEEE International Conference on Bioinformatics and Biomedicine (BIBM 2025)</p>
                         <p class="description">
-                           
-                        </p>
+                            </p>
                     </div>
                     <div class="paper-links">
                         <a href="https://github.com/SCUT-ACIG/fNIRS-TTT" class="paper-link github-link" target="_blank">
@@ -787,13 +795,12 @@
                             </svg>
                             GitHub
                         </a>
-                        <a href="" class="paper-link paper-link-btn" target="_blank">
+                        <a href="#" class="paper-link paper-link-btn" target="_blank">
                             📄 Paper
                         </a>
                     </div>
                 </div>
             </div>       
-            
             
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('passnet-img')">
@@ -808,20 +815,15 @@
                             PASSNet introduces a novel approach to panoramic video saliency prediction by effectively integrating audio-visual information. 
                             The network employs a spherical vision transformer to handle panoramic distortion and over-the-horizon perception, 
                             while an audio semantic temporal attention mechanism captures contextual audio information. 
-                            A progressive two-stage fusion strategy calibrates audio temporal semantics with spatial visual perception through cross-modal interactions, 
-                            achieving state-of-the-art performance on benchmark datasets.
+                            A progressive two-stage fusion strategy calibrates audio temporal semantics with spatial visual perception through cross-modal interactions.
                         </p>
                     </div>
                     <div class="paper-links">
                         <a href="https://github.com/SCUT-ACIG/PASSNet" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                             GitHub
                         </a>
-                        <a href="#" class="paper-link paper-link-btn" target="_blank">
-                            📄 Paper
-                        </a>
+                        <a href="#" class="paper-link paper-link-btn" target="_blank">📄 Paper</a>
                     </div>
                 </div>
             </div>
@@ -834,52 +836,41 @@
                     <div>
                         <h3>REFN: A Multimodal Database for Emotion Analysis Using Functional Near-Infrared Spectroscopy</h3>
                         <p class="authors">Dengjun Sun, Chunmei Qing*, Zhili Lai, Wanxiang Luo, Xiangmin Xu</p>
-                        <p class="venue">CSIG Conference on Emotional Intelligence </p>
+                        <p class="venue">CSIG Conference on Emotional Intelligence</p>
                         <p class="description">
-                            REFN is a multimodal affective dataset based on functional Near-Infrared Spectroscopy (fNIRS), comprising physiological signal data from 28 participants while watching five categories of emotional videos (pride, happy, neutral, fear, sad). The dataset integrates fNIRS signals, Galvanic Skin Response (GSR) data, Photoplethysmographic (PPG) data, and facial expression data. The research explores oxyhemoglobin activation changes and distinct activity patterns under different emotional states, and conducts binary and five-class classification experiments using deep learning and machine learning models, providing an important public data resource for fNIRS-based emotion recognition research.
+                            REFN is a multimodal affective dataset based on functional Near-Infrared Spectroscopy (fNIRS), comprising physiological signal data from 28 participants. The dataset integrates fNIRS signals, Galvanic Skin Response (GSR) data, Photoplethysmographic (PPG) data, and facial expression data. The research explores oxyhemoglobin activation changes and distinct activity patterns under different emotional states.
                         </p>
                     </div>
                     <div class="paper-links">
                         <a href="https://github.com/SCUT-ACIG/REFN" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://link.springer.com/chapter/10.1007/978-981-96-5084-2_2" class="paper-link paper-link-btn" target="_blank">
-                            📄 Paper
-                        </a>
-                        <a href="https://scut-acig.github.io/REFN/" class="paper-link dataset-link" target="_blank">
-                            🗂️ Dataset Access
-                        </a>
+                        <a href="https://link.springer.com/chapter/10.1007/978-981-96-5084-2_2" class="paper-link paper-link-btn" target="_blank">📄 Paper</a>
+                        <a href="https://scut-acig.github.io/REFN/" class="paper-link dataset-link" target="_blank">🗂️ Dataset Access</a>
                     </div>
                 </div>
             </div>
 
-            
             <div class="paper-card">
-                <div class="paper-image" onclick="openModal('passnet-img')">
-                    <img id="passnet-img" src="Images/SPFormer.png" alt="SPFormer Architecture">
+                <div class="paper-image" onclick="openModal('spformer-img')">
+                    <img id="spformer-img" src="Images/SPFormer.png" alt="SPFormer Architecture">
                 </div>
                 <div class="paper-content">
                     <div>
                         <h3>Superpoint Transformer for 3D Scene Instance Segmentation</h3>
                         <p class="authors">Jiahao Sun, Chunmei Qing*, Junpeng Tan, Xiangmin Xu</p>
-                        <p class="venue"> Proceedings of the AAAI Conference on Artificial Intelligence（人工智能顶会, Oral报告）</p>
+                        <p class="venue">Proceedings of the AAAI Conference on Artificial Intelligence (AAAI, Oral)</p>
                         <p class="description">
-                            Most existing methods realize 3D instance segmentation by extending those models used for 3D object detection or 3D semantic segmentation. However, these non-straightforward methods suffer from two drawbacks: 1) Imprecise bounding boxes or unsatisfactory semantic predictions limit the performance of the overall 3D instance segmentation framework. 2) Existing method requires a time-consuming intermediate step of aggregation. To address these issues, this paper proposes a novel end-to-end 3D instance segmentation method based on Superpoint Transformer, named as SPFormer. It groups potential features from point clouds into superpoints, and directly predicts instances through query vectors without relying on the results of object detection or semantic segmentation. The key step in this framework is a novel query decoder with transformers that can capture the instance information through the superpoint cross-attention mechanism and generate the superpoint masks of the instances. Through bipartite matching based on superpoint masks, SPFormer can implement the network training without the intermediate aggregation step, which accelerates the network. Extensive experiments on ScanNetv2 and S3DIS benchmarks verify that our method is concise yet efficient. Notably, SPFormer exceeds compared state-of-the-art methods by 4.3% on ScanNetv2 hidden test set in terms of mAP and keeps fast inference speed (247ms per frame) simultaneously.
+                            This paper proposes a novel end-to-end 3D instance segmentation method based on Superpoint Transformer, named as SPFormer. It groups potential features from point clouds into superpoints, and directly predicts instances through query vectors without relying on the results of object detection or semantic segmentation. SPFormer exceeds compared state-of-the-art methods by 4.3% on ScanNetv2 hidden test set.
                         </p>
                     </div>
                     <div class="paper-links">
                         <a href="https://github.com/sunjiahao1999/SPFormer" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25335" class="paper-link paper-link-btn" target="_blank">
-                            📄 Paper
-                        </a>
+                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25335" class="paper-link paper-link-btn" target="_blank">📄 Paper</a>
                     </div>
                 </div>
             </div>       
@@ -925,9 +916,11 @@
             var modalImg = document.getElementById("modalImg");
             var img = document.getElementById(imgId);
             
-            modal.style.display = "block";
-            modalImg.src = img.src;
-            document.body.style.overflow = 'hidden';
+            if(img) {
+                modal.style.display = "block";
+                modalImg.src = img.src;
+                document.body.style.overflow = 'hidden';
+            }
         }
         
         function closeModal() {
