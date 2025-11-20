@@ -309,18 +309,39 @@
         }
 
         .person-email {
-            font-size: 13px;
-            color: #95a5a6;
-            text-decoration: none;
-            border-bottom: 1px dotted #bdc3c7;
-            transition: color 0.3s;
-        }
+    display: inline-flex;       /* 让图标和文字水平对齐 */
+    align-items: center;        /* 垂直居中 */
+    gap: 8px;                  /* 图标和文字的间距 */
+    margin-top: 12px;          /* 与上方文字拉开距离 */
+    padding: 6px 16px;         /* 按钮内部留白 */
+    
+    font-size: 13px;
+    font-weight: 500;          /* 稍微加粗一点点，提升质感 */
+    color: #57606f;            /* 深灰色，比纯黑柔和 */
+    background-color: transparent;
+    
+    border: 1px solid #d1d8e0; /* 浅灰色边框，优雅低调 */
+    border-radius: 6px;        /* 微圆角，符合现代学术审美 */
+    text-decoration: none;     /* 去掉下划线 */
+    
+    transition: all 0.2s ease; /* 平滑过渡 */
+}
 
-        .person-email:hover {
-            color: #3498db;
-            border-bottom-color: #3498db;
-        }
-        
+    .person-email:hover {
+        color: #3498db;          
+        border-color: #3498db;    
+        background-color: rgba(52, 152, 219, 0.05); 
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15); 
+    }
+    
+    
+    .person-email svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor; 
+    }
+            
         /* Paper Card */
         .paper-card {
             display: grid;
