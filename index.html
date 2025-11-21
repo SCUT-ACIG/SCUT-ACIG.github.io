@@ -8,10 +8,22 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Global Reset --- */
+        /* --- Global Reset & Variables --- */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #9b59b6;
+            --accent-cyan: #00d2ff;
+            --accent-purple: #d646c8;
+            --dark-bg: #1a252f;
+            --light-bg: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-light: #57606f;
+            --section-spacing: 80px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -23,230 +35,230 @@
         }
         
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--light-bg);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: "Playfair Display", serif;
+            color: var(--text-dark);
         }
         
-        /* --- Header (Redesigned for ACIG Logo) --- */
-        header {
-            /* 深蓝到深紫渐变，完美匹配 Logo 氛围 */
-            background: linear-gradient(120deg, #1e4066 0%, #4c2658 100%);
+        /* --- NEW Split Hero Header --- */
+        .hero-section {
+            /* 深邃的科技感渐变背景 */
+            background: linear-gradient(135deg, #121a24 0%, #1e2a38 50%, #2c1e30 100%);
             color: white;
-            padding: 0;
             position: relative;
             overflow: hidden;
+            /* 确保足够的高度来容纳大图 */
+            min-height: 70vh; 
+            display: flex;
+            align-items: center;
         }
         
-        /* 右上角光斑：紫粉色，呼应 Logo 右侧 */
-        header::before {
+        /* 背景氛围光效 */
+        .hero-section::before, .hero-section::after {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(214, 70, 200, 0.15) 0%, transparent 70%);
             border-radius: 50%;
-            animation: floatBubble 20s infinite ease-in-out;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+        .hero-section::before {
+            top: -20%; right: -10%; width: 600px; height: 600px;
+            background: var(--accent-purple);
+        }
+        .hero-section::after {
+            bottom: -20%; left: -10%; width: 500px; height: 500px;
+            background: var(--accent-cyan);
         }
         
-        /* 左下角光斑：青蓝色，呼应 Logo 左侧 */
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 210, 255, 0.12) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: floatBubble 15s infinite ease-in-out reverse;
-        }
-
-        @keyframes floatBubble {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, -20px); }
-            100% { transform: translate(0, 0); }
-        }
-        
-        .header-content {
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
             position: relative;
             z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px 50px;
-            text-align: center;
-        }
-        
-        /* LOGO 样式 */
-        .header-logo {
-            max-width: 200px; /* 根据实际图片调整 */
-            height: auto;
-            display: block;
-            margin: 0 auto 20px auto;
-            /* 增加辉光让 Logo 融入背景 */
-            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.3));
-            animation: fadeInDown 0.8s ease;
         }
 
-        header h1 {
-            font-family: "Playfair Display", "Georgia", serif;
-            font-size: 48px;
-            margin-bottom: 18px;
+        /* 左侧文字区域 */
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        /* 右侧图片区域 */
+        .hero-image-wrapper {
+            flex: 1.2; /* 让图片区域稍微宽一点 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 宽幅 Logo 图片样式 */
+        .hero-logo-img {
+            width: 100%;
+            height: auto;
+            max-width: 800px; /* 限制最大显示宽度，防止在超大屏上过大 */
+            object-fit: contain;
+            /* 增加一点悬浮感和光影 */
+            filter: drop-shadow(0 10px 30px rgba(0, 210, 255, 0.2));
+            animation: floatImage 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatImage {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        .hero-subtitle {
+            font-family: "Inter", sans-serif;
+            font-size: 18px;
             font-weight: 700;
-            letter-spacing: 1px;
-            /* 亮白渐变文字 */
-            background: linear-gradient(135deg, #ffffff 0%, #d1e8ff 100%);
+            color: var(--accent-cyan);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(0, 210, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+        
+        .hero-text h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ffffff, #e2efff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            animation: fadeInDown 0.8s ease 0.2s both;
         }
         
-        .header-title-full {
-            font-size: 16px;
-            color: rgba(220, 240, 255, 0.9);
-            margin-bottom: 12px;
+        .hero-university {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
             font-weight: 400;
-            animation: fadeInUp 0.8s ease 0.3s both;
-        }
-        
-        .header-divider {
-            width: 70px;
-            height: 3px;
-            /* 分割线改为青紫渐变 */
-            background: linear-gradient(90deg, transparent, #00d2ff, #d646c8, transparent);
-            margin: 25px auto;
-            opacity: 0.8;
-            animation: expandWidth 0.8s ease 0.5s both;
-        }
-        
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes expandWidth {
-            from { width: 0; }
-            to { width: 80px; }
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 15px;
         }
         
         /* --- Navigation --- */
         nav {
             background: white;
-            padding: 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid #e8e8e8;
         }
         
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 0;
-            flex-wrap: wrap;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0;
-        }
-        
-        nav li {
-            position: relative;
         }
         
         nav a {
             display: block;
-            color: #2c3e50;
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 600;
-            font-size: 17px;
-            padding: 22px 40px;
+            font-size: 16px;
+            padding: 20px 30px;
             transition: all 0.3s ease;
             position: relative;
-            letter-spacing: 0.8px;
         }
         
-        nav a::before {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             width: 0;
             height: 3px;
-            background: linear-gradient(90deg, #3498db, #2980b9);
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
         
         nav a:hover {
-            color: #3498db;
-            background: rgba(52, 152, 219, 0.05);
+            color: var(--primary-color);
         }
         
-        nav a:hover::before {
-            width: 70%;
+        nav a:hover::after {
+            width: 60%;
         }
         
-        /* --- Main Container --- */
+        /* --- Main Container & Sections --- */
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: var(--section-spacing) 20px;
         }
         
-        /* --- Sections --- */
         section {
-            background: white;
-            padding: 50px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: var(--section-spacing);
         }
-        
+
+        /* 重新设计的板块标题样式 */
         section h2 {
-            font-size: 32px;
-            color: #2c3e50;
-            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
             padding-bottom: 15px;
-            border-bottom: 3px solid #3498db;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 2px;
         }
         
         /* About Text */
         .about p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            color: #555;
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
         }
 
         /* --- People Section Styles --- */
         .team-category-title {
-            font-size: 20px;
-            color: #7f8c8d;
-            margin: 30px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-size: 24px;
+            color: var(--text-dark);
+            margin: 40px 0 30px 0;
+            padding-left: 15px;
+            border-left: 4px solid var(--primary-color);
+            font-weight: 600;
         }
 
         .people-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .pi-grid {
@@ -255,25 +267,26 @@
 
         .person-card {
             background: white;
-            border: 1px solid #e8e8e8;
-            border-radius: 12px;
-            padding: 30px 20px;
+            border-radius: 16px;
+            padding: 35px 25px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid transparent;
         }
 
         .person-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            border-color: #3498db;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.3);
         }
 
         .person-image-container {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             margin-bottom: 20px;
             position: relative;
         }
@@ -283,17 +296,17 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 3px solid #f0f0f0;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: border-color 0.3s ease;
         }
 
         .person-card:hover .person-img {
-            border-color: #3498db;
+            border-color: var(--accent-cyan);
         }
 
         .person-info h4 {
-            font-size: 18px;
-            color: #2c3e50;
+            font-size: 20px;
             margin-bottom: 5px;
             font-weight: 700;
         }
@@ -301,393 +314,208 @@
         .person-role {
             display: block;
             font-size: 14px;
-            color: #3498db;
+            color: var(--primary-color);
             font-weight: 600;
             margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-family: "Inter", sans-serif;
         }
 
         .person-desc {
-            font-size: 13px;
-            color: #777;
-            line-height: 1.5;
+            font-size: 14px;
+            color: var(--text-light);
             margin-bottom: 15px;
         }
 
-        /* --- New Email Outline Button Style --- */
+        /* Email Outline Button Style */
         .person-email {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 12px;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #57606f;
+            margin-top: auto; /* Push to bottom */
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
             background-color: transparent;
-            border: 1px solid #d1d8e0;
-            border-radius: 6px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
             text-decoration: none;
             transition: all 0.2s ease;
+            font-family: "Inter", sans-serif;
         }
 
         .person-email:hover {
-            color: #3498db;
-            border-color: #3498db;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
             background-color: rgba(52, 152, 219, 0.05);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
         }
     
         .person-email svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
+            width: 16px; height: 16px; fill: currentColor;
         }
             
-        /* --- Paper Card --- */
+        /* --- Paper Card (Clean & Modern) --- */
         .paper-card {
             display: grid;
-            grid-template-columns: minmax(300px, 40%) 1fr; /* 优化了 Grid 比例 */
-            gap: 35px;
-            border: 2px solid #e0e0e0;
-            padding: 30px;
-            border-radius: 12px;
+            grid-template-columns: 45% 1fr;
+            gap: 40px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
             margin-bottom: 40px;
             transition: all 0.3s ease;
-            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .paper-card:hover {
-            border-color: #3498db;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
         }
         
-        /* Paper Image */
         .paper-image {
-            position: relative;
+            border-radius: 12px;
             overflow: hidden;
-            border-radius: 8px;
-            background: #ffffff;
             cursor: pointer;
-            border: 1px solid #e8e8e8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            min-height: 250px;
-            max-height: 500px;
+            background: #f8f9fa;
+            min-height: 280px;
         }
         
         .paper-image img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            object-position: center;
+            width: 100%; height: auto; object-fit: contain;
             transition: transform 0.4s ease;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            display: block;
         }
         
-        .paper-image:hover {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-        
-        .paper-image:hover img {
-            transform: scale(1.08);
-        }
-        
-        /* Paper Content */
-        .paper-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .paper-image:hover img { transform: scale(1.05); }
         
         .paper-content h3 {
-            font-size: 22px;
-            color: #2c3e50;
+            font-size: 24px;
+            line-height: 1.3;
             margin-bottom: 15px;
-            line-height: 1.4;
         }
         
         .paper-content .authors {
-            color: #7f8c8d;
+            color: var(--text-light);
             font-size: 15px;
-            margin-bottom: 10px;
-            line-height: 1.5;
+            margin-bottom: 12px;
+            font-style: italic;
         }
         
         .paper-content .venue {
-            color: #e74c3c;
-            font-weight: 600;
-            font-size: 15px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: 14px;
             margin-bottom: 20px;
             display: inline-block;
+            background: rgba(155, 89, 182, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
         }
         
         .paper-content .description {
-            color: #555;
+            color: var(--text-dark);
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.8;
             margin-bottom: 25px;
-            flex-grow: 1;
         }
         
         /* Paper Links */
-        .paper-links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        
+        .paper-links { display: flex; gap: 15px; flex-wrap: wrap; }
         .paper-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 24px; text-decoration: none;
+            border-radius: 50px; font-size: 14px; font-weight: 700;
+            transition: all 0.3s; font-family: "Inter", sans-serif;
         }
-        
-        .github-link {
-            background: #24292e;
-            color: white;
-        }
-        
-        .github-link:hover {
-            background: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .paper-link-btn {
-            background: #3498db;
-            color: white;
-        }
-        
-        .paper-link-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
-        }
-        
-        .dataset-link {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .dataset-link:hover {
-            background: #229954;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
-        }
+        .github-link { background: #24292e; color: white; }
+        .paper-link-btn { background: var(--primary-color); color: white; }
+        .dataset-link { background: #27ae60; color: white; }
+        .paper-link:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
         
         /* --- Datasets --- */
         .datasets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px; margin-top: 30px;
         }
-        
         .dataset-card {
-            border: 2px solid #e0e0e0;
-            padding: 30px;
-            border-radius: 8px;
+            background: white; padding: 40px; border-radius: 16px;
+            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
-        
-        .dataset-card:hover {
-            border-color: #3498db;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .dataset-card h3 {
-            font-size: 24px;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        
-        .dataset-card p {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
+        .dataset-card:hover { transform: translateY(-5px); }
         .dataset-card .btn {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-            font-weight: 600;
+            display: inline-block; background: var(--primary-color); color: white;
+            padding: 12px 35px; text-decoration: none; border-radius: 50px;
+            transition: background 0.3s; font-weight: 700; margin-top: 20px;
         }
-        
-        .dataset-card .btn:hover {
-            background: #2980b9;
-        }
-        
-        /* --- Contact --- */
-        .contact-info {
-            font-size: 16px;
-            line-height: 2;
-            color: #555;
-        }
-        
-        .contact-info a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
+        .dataset-card .btn:hover { background: #2980b9; }
         
         /* --- Footer --- */
         footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
+            background: #121a24; color: rgba(255,255,255,0.6);
+            text-align: center; padding: 50px 20px; margin-top: 80px;
         }
+        footer a { color: var(--primary-color); text-decoration: none; }
         
-        footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        
-        /* --- Modal (Image Zoom) --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.95);
-            cursor: zoom-out;
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-            z-index: 1001;
-        }
-        
-        .modal-close:hover {
-            color: #3498db;
-        }
-        
+        /* --- Modal & Misc --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(10px); cursor: zoom-out; }
+        .modal img { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .modal-close { position: absolute; top: 30px; right: 50px; color: white; font-size: 50px; cursor: pointer; }
+
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
-            .paper-card {
-                grid-template-columns: 1fr;
-            }
-            
-            .paper-image {
-                min-height: 220px;
-                max-height: 450px;
-            }
+            /* 平板端：Header 文字变小，卡片变单列 */
+            .hero-text h1 { font-size: 42px; }
+            .paper-card { grid-template-columns: 1fr; gap: 25px; }
+            .paper-image { min-height: 250px; max-height: 400px; }
         }
         
         @media (max-width: 768px) {
-            /* 移动端 Logo 适配 */
-            .header-logo {
-                max-width: 140px;
-                margin-bottom: 20px;
-            }
-
-            header h1 {
-                font-size: 32px;
-                letter-spacing: 0.5px;
-            }
-            
-            .header-content {
+            /* 移动端核心改变：Header 变为垂直堆叠 */
+            .hero-container {
+                flex-direction: column-reverse; /* 图片在上面，文字在下面 */
+                text-align: center;
                 padding: 40px 20px;
             }
-            
-            .header-title-full {
-                font-size: 14px;
+            .hero-image-wrapper {
+                width: 100%;
+                margin-bottom: 30px;
             }
-            
-            section {
-                padding: 30px 20px;
+            .hero-logo-img {
+                max-width: 100%; /* 移动端全宽显示 */
             }
-            
-            nav a {
-                padding: 18px 25px;
-                font-size: 15px;
+            .hero-text h1 { font-size: 36px; }
+            .hero-university { 
+                border-left: none; 
+                border-top: 3px solid var(--accent-purple);
+                padding-left: 0; padding-top: 15px;
+                display: inline-block;
             }
-            
-            .paper-content h3 {
-                font-size: 18px;
-            }
-            
-            .paper-image {
-                min-height: 200px;
-                max-height: 400px;
-            }
-            
-            /* People Grid Responsive */
-            .people-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 15px;
-            }
-            
-            .person-card {
-                padding: 20px 15px;
-            }
-            
-            .person-image-container {
-                width: 80px;
-                height: 80px;
-            }
+
+            nav a { padding: 15px 15px; font-size: 14px; }
+            section h2 { font-size: 28px; }
+            .people-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <img src="Images/logo.jpg" alt="ACIG Logo" class="header-logo">
-            
-            <h1>Affective and Cognitive Interaction Group</h1>
-            <div class="header-divider"></div>
-            <p class="header-title-full">South China University of Technology</p>
+    <header class="hero-section">
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="hero-subtitle">SCUT-ACIG</div>
+                <h1>Affective and Cognitive Interaction Group</h1>
+                <p class="hero-university">South China University of Technology</p>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="Images/ACIG_Wide_Logo.png" alt="ACIG Wide Logo" class="hero-logo-img">
+            </div>
         </div>
     </header>
 
@@ -706,12 +534,7 @@
             <h2>About Us</h2>
             <p>
                 Welcome to the Affective and Cognitive Interaction Group (ACIG) at South China University of Technology. 
-                Our research focuses on multimodal sentiment analysis, virtual reality interaction, functional near-infrared spectroscopy (fNIRS), and style transfer.
-            </p>
-            <p>
-                We are committed to advancing the state-of-the-art in affective computing and cognitive intelligence research. 
-                Our team consists of dedicated researchers and students working on cutting-edge projects that address 
-                interdisciplinary challenges and regional industry needs.
+                Our research focuses on multimodal sentiment analysis, virtual reality interaction, functional near-infrared spectroscopy (fNIRS), and style transfer. We are committed to advancing the state-of-the-art in affective computing and cognitive intelligence research, addressing interdisciplinary challenges and regional industry needs.
             </p>
         </section>
 
@@ -727,12 +550,10 @@
                     <div class="person-info">
                         <h4>Chunmei Qing</h4>
                         <span class="person-role">Professor</span>
-                        <p class="person-desc">Research interests: fNIRS, Multimodal Learning, Affective Computing.</p>
+                        <p class="person-desc">fNIRS, Multimodal Learning, Affective Computing.</p>
                         
                         <a href="https://yanzhao.scut.edu.cn/open/ExpertInfo.aspx?zjbh=J!hKENfzc90cDg!i4EvJBw==" class="person-email" target="_blank">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                             View Profile
                         </a>
                     </div>
@@ -750,7 +571,6 @@
                         <span class="person-role">Master Student</span>
                     </div>
                 </div>
-        
                 <div class="person-card">
                     <div class="person-image-container">
                         <img src="https://ui-avatars.com/api/?name=Zhili+Lai&background=random&size=256" alt="Zhili Lai" class="person-img">
@@ -760,7 +580,6 @@
                         <span class="person-role">Master Student</span>
                     </div>
                 </div>
-                
                 <div class="person-card">
                     <div class="person-image-container">
                         <img src="https://ui-avatars.com/api/?name=Wanxiang+Luo&background=random&size=256" alt="Wanxiang Luo" class="person-img">
@@ -776,54 +595,38 @@
         <section id="publications">
             <h2>Publications </h2>
             
-            <div class="paper-card">
+             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('ttt-img')">
-                    <img id="ttt-img" src="Images/fNIRS-TTT.png" alt="FNIRS-TTT Architecture">
+                    <img id="ttt-img" src="Images/fNIRS-TTT.png" alt="FNIRS-TTT">
                 </div>
                 <div class="paper-content">
                     <div>
                         <h3>fNIRS-TTT: Enhancing fNIRS Signal Classification with Test-Time Training by Improved Spatiotemporal Feature Extraction</h3>
                         <p class="authors">Wanxiang Luo, Chunmei Qing*, Junpeng Tan, Yihang Zou, Xiangmin Xu</p>
-                        <p class="venue">IEEE International Conference on Bioinformatics and Biomedicine (BIBM 2025)</p>
-                        <p class="description">
-                            </p>
+                        <p class="venue">IEEE BIBM 2025</p>
+                        <p class="description">Abstract to be updated.</p>
                     </div>
                     <div class="paper-links">
-                        <a href="https://github.com/SCUT-ACIG/fNIRS-TTT" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                            GitHub
-                        </a>
-                        <a href="#" class="paper-link paper-link-btn" target="_blank">
-                            📄 Paper
-                        </a>
+                        <a href="https://github.com/SCUT-ACIG/fNIRS-TTT" class="paper-link github-link" target="_blank">GitHub</a>
+                        <a href="#" class="paper-link paper-link-btn" target="_blank">Paper</a>
                     </div>
                 </div>
             </div>       
             
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('passnet-img')">
-                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet Architecture">
+                    <img id="passnet-img" src="Images/PASSNet.png" alt="PASSNet">
                 </div>
                 <div class="paper-content">
                     <div>
                         <h3>PASSNet: Progressive Audio-Visual Semantic Spatial-Aware Network for Panoramic Video Saliency Prediction</h3>
                         <p class="authors">Author names to be updated</p>
                         <p class="venue">Under Review</p>
-                        <p class="description">
-                            PASSNet introduces a novel approach to panoramic video saliency prediction by effectively integrating audio-visual information. 
-                            The network employs a spherical vision transformer to handle panoramic distortion and over-the-horizon perception, 
-                            while an audio semantic temporal attention mechanism captures contextual audio information. 
-                            A progressive two-stage fusion strategy calibrates audio temporal semantics with spatial visual perception through cross-modal interactions.
-                        </p>
+                        <p class="description">PASSNet introduces a novel approach to panoramic video saliency prediction by effectively integrating audio-visual information using spherical vision transformers and cross-modal interactions.</p>
                     </div>
                     <div class="paper-links">
-                        <a href="https://github.com/SCUT-ACIG/PASSNet" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                            GitHub
-                        </a>
-                        <a href="#" class="paper-link paper-link-btn" target="_blank">📄 Paper</a>
+                        <a href="https://github.com/SCUT-ACIG/PASSNet" class="paper-link github-link" target="_blank">GitHub</a>
+                        <a href="#" class="paper-link paper-link-btn" target="_blank">Paper</a>
                     </div>
                 </div>
             </div>
@@ -837,40 +640,30 @@
                         <h3>REFN: A Multimodal Database for Emotion Analysis Using Functional Near-Infrared Spectroscopy</h3>
                         <p class="authors">Dengjun Sun, Chunmei Qing*, Zhili Lai, Wanxiang Luo, Xiangmin Xu</p>
                         <p class="venue">CSIG Conference on Emotional Intelligence</p>
-                        <p class="description">
-                            REFN is a multimodal affective dataset based on functional Near-Infrared Spectroscopy (fNIRS), comprising physiological signal data from 28 participants. The dataset integrates fNIRS signals, Galvanic Skin Response (GSR) data, Photoplethysmographic (PPG) data, and facial expression data. The research explores oxyhemoglobin activation changes and distinct activity patterns under different emotional states.
-                        </p>
+                        <p class="description">REFN is a multimodal affective dataset based on fNIRS, integrating physiological signals (GSR, PPG) and facial expression data from 28 participants watching emotional videos.</p>
                     </div>
                     <div class="paper-links">
-                        <a href="https://github.com/SCUT-ACIG/REFN" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                            GitHub
-                        </a>
-                        <a href="https://link.springer.com/chapter/10.1007/978-981-96-5084-2_2" class="paper-link paper-link-btn" target="_blank">📄 Paper</a>
-                        <a href="https://scut-acig.github.io/REFN/" class="paper-link dataset-link" target="_blank">🗂️ Dataset Access</a>
+                        <a href="https://github.com/SCUT-ACIG/REFN" class="paper-link github-link" target="_blank">GitHub</a>
+                        <a href="https://link.springer.com/chapter/10.1007/978-981-96-5084-2_2" class="paper-link paper-link-btn" target="_blank">Paper</a>
+                        <a href="https://scut-acig.github.io/REFN/" class="paper-link dataset-link" target="_blank">Dataset</a>
                     </div>
                 </div>
             </div>
 
             <div class="paper-card">
                 <div class="paper-image" onclick="openModal('spformer-img')">
-                    <img id="spformer-img" src="Images/SPFormer.png" alt="SPFormer Architecture">
+                    <img id="spformer-img" src="Images/SPFormer.png" alt="SPFormer">
                 </div>
                 <div class="paper-content">
                     <div>
                         <h3>Superpoint Transformer for 3D Scene Instance Segmentation</h3>
                         <p class="authors">Jiahao Sun, Chunmei Qing*, Junpeng Tan, Xiangmin Xu</p>
-                        <p class="venue">Proceedings of the AAAI Conference on Artificial Intelligence (AAAI, Oral)</p>
-                        <p class="description">
-                            This paper proposes a novel end-to-end 3D instance segmentation method based on Superpoint Transformer, named as SPFormer. It groups potential features from point clouds into superpoints, and directly predicts instances through query vectors without relying on the results of object detection or semantic segmentation. SPFormer exceeds compared state-of-the-art methods by 4.3% on ScanNetv2 hidden test set.
-                        </p>
+                        <p class="venue">AAAI (Oral)</p>
+                        <p class="description">SPFormer is a novel end-to-end 3D instance segmentation method based on Superpoint Transformer, directly predicting instances through query vectors.</p>
                     </div>
                     <div class="paper-links">
-                        <a href="https://github.com/sunjiahao1999/SPFormer" class="paper-link github-link" target="_blank">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                            GitHub
-                        </a>
-                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25335" class="paper-link paper-link-btn" target="_blank">📄 Paper</a>
+                        <a href="https://github.com/sunjiahao1999/SPFormer" class="paper-link github-link" target="_blank">GitHub</a>
+                        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/25335" class="paper-link paper-link-btn" target="_blank">Paper</a>
                     </div>
                 </div>
             </div>       
@@ -881,28 +674,15 @@
             <div class="datasets-grid">
                 <div class="dataset-card">
                     <h3>REFN Dataset</h3>
-                    <p>
-                        A comprehensive multimodal database for emotion analysis research using functional near-infrared spectroscopy (fNIRS). 
-                        The database integrates multiple modalities including fNIRS signals, audio, and visual data for advanced emotion recognition studies.
-                    </p>
+                    <p>A comprehensive multimodal database for emotion analysis research using functional near-infrared spectroscopy (fNIRS), integrating audio and visual data.</p>
                     <a href="https://scut-acig.github.io/REFN/" class="btn">Apply for Access</a>
                 </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:qchm@scut.edu.cn">qchm@scut.edu.cn</a></p>
-                <p><strong>Address:</strong> South China University of Technology, Guangzhou, China</p>
-                <p><strong>GitHub:</strong> <a href="https://github.com/SCUT-ACIG" target="_blank">github.com/SCUT-ACIG</a></p>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2025 SCUT-ACIG. All rights reserved.</p>
-        <p><a href="https://github.com/SCUT-ACIG">GitHub Organization</a></p>
+        <p>&copy; 2025 SCUT-ACIG. South China University of Technology.</p>
     </footer>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
@@ -915,23 +695,18 @@
             var modal = document.getElementById("imageModal");
             var modalImg = document.getElementById("modalImg");
             var img = document.getElementById(imgId);
-            
             if(img) {
                 modal.style.display = "block";
                 modalImg.src = img.src;
                 document.body.style.overflow = 'hidden';
             }
         }
-        
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
             document.body.style.overflow = 'auto';
         }
-        
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
+            if (event.key === 'Escape') { closeModal(); }
         });
     </script>
 </body>
