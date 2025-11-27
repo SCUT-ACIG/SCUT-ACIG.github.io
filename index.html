@@ -99,21 +99,24 @@
         }
 
         .hero-logo-img {
-            width: 100%;
-            height: auto;
-            max-width: 800px;
-            object-fit: contain;
-        
-            /* --- 核心修改代码开始 --- */
-            /* 创建一个径向渐变遮罩：中间可见(黑色)，边缘透明 */
-            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
-            mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
-            
-            /* 保留原来的阴影效果（可选） */
-            filter: drop-shadow(0 10px 30px rgba(0, 210, 255, 0.2));
-            /* --- 核心修改代码结束 --- */
-        }
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    object-fit: contain;
 
+    /* --- 核心修改：椭圆适配遮罩 --- */
+    
+    /* 1. ellipse: 将形状改为椭圆，适配长方形图片 */
+    /* 2. closest-side: 强制渐变在触碰到最近的边缘时结束，彻底消除切割感 */
+    /* 3. black 40% -> transparent 100%: 保证中心 40% 区域是完全清晰的，然后向四周边缘慢慢虚化 */
+    -webkit-mask-image: radial-gradient(ellipse closest-side at center, black 60%, transparent 100%);
+    mask-image: radial-gradient(ellipse closest-side at center, black 40%, transparent 100%);
+    
+    /* 建议：由于边缘虚化可能会让 Logo 显得稍微有点“弱”，可以略微提升亮度和对比度 */
+    filter: brightness(1.1) contrast(1.1);
+
+    /* --- 核心修改结束 --- */
+}
         @keyframes floatImage {
             from { transform: translateY(0); }
             to { transform: translateY(-15px); }
