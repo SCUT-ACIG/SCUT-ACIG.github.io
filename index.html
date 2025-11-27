@@ -104,15 +104,15 @@
     max-width: 800px;
     object-fit: contain;
 
-    /* --- 核心修改：椭圆适配遮罩 --- */
+    /* --- 核心修改：完美的圆形柔光遮罩 --- */
+
+    /* 1. circle: 强制形状为正圆 */
+    /* 2. closest-side: 关键！让圆的大小取决于图片最短的那条边（防止溢出产生切割线） */
+    /* 3. black 50% -> transparent 100%: 只有中心50%是完全不透明的，剩下的一半用来渐变消失 */
+    -webkit-mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 100%);
+    mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 100%);
     
-    /* 1. ellipse: 将形状改为椭圆，适配长方形图片 */
-    /* 2. closest-side: 强制渐变在触碰到最近的边缘时结束，彻底消除切割感 */
-    /* 3. black 40% -> transparent 100%: 保证中心 40% 区域是完全清晰的，然后向四周边缘慢慢虚化 */
-    -webkit-mask-image: radial-gradient(ellipse closest-side at center, black 60%, transparent 100%);
-    mask-image: radial-gradient(ellipse closest-side at center, black 40%, transparent 100%);
-    
-    /* 建议：由于边缘虚化可能会让 Logo 显得稍微有点“弱”，可以略微提升亮度和对比度 */
+    /* 建议：由于边缘被虚化，稍微提升一点对比度会让Logo看起来更精神 */
     filter: brightness(1.1) contrast(1.1);
 
     /* --- 核心修改结束 --- */
