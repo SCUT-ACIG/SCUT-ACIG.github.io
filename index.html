@@ -99,23 +99,22 @@
         }
 
         .hero-logo-img {
-    width: 100%;
-    height: auto;
-    max-width: 800px;
-    object-fit: contain;
-
-    /* --- 核心修改：完美的圆形柔光遮罩 --- */
-
-    /* 1. circle: 强制形状为正圆 */
-    /* 2. closest-side: 关键！让圆的大小取决于图片最短的那条边（防止溢出产生切割线） */
-    /* 3. black 50% -> transparent 100%: 只有中心50%是完全不透明的，剩下的一半用来渐变消失 */
-    -webkit-mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 100%);
-    mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 100%);
+    /* --- 核心修改：严格设定巨大尺寸 --- */
+    width: 2048px;  /* 半径 1024px * 2 = 直径 2048px */
+    height: 2048px; /* 强制高度一致，确保是正圆 */
     
-    /* 建议：由于边缘被虚化，稍微提升一点对比度会让Logo看起来更精神 */
-    filter: brightness(1.1) contrast(1.1);
-
-    /* --- 核心修改结束 --- */
+    /* 强制将容器设定为圆形，确保裁切掉任何可能的方角 */
+    border-radius: 50%; 
+    
+    /* 确保图片内容填满这个圆形区域，不变形 */
+    object-fit: cover; 
+    
+    /* --- 其它样式 --- */
+    /* 由于尺寸巨大，建议暂时关掉阴影，否则可能会卡顿或效果不好 */
+    /* filter: drop-shadow(0 10px 30px rgba(0, 210, 255, 0.2)); */
+    
+    /* 这个属性可能会导致它在小屏幕上溢出，可能需要设置 max-width: 100% 来稍微拯救一下响应式 */
+    max-width: 100%; 
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
@@ -588,7 +587,7 @@
                 <p class="hero-university">South China University of Technology</p>
             </div>
             <div class="hero-image-wrapper">
-                <img src="Images/logo.jpg" alt="ACIG Wide Logo" class="hero-logo-img">
+                <img src="Images/logo.png" alt="ACIG Wide Logo" class="hero-logo-img">
             </div>
         </div>
     </header>
