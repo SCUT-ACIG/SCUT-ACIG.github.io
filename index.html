@@ -98,26 +98,34 @@
             align-items: center;
         }
 
-      /* --- 替换原有的 .hero-logo-img --- */
-.hero-logo-img {
-    /* 1. 响应式尺寸设置：确保图片在不同设备上宽度自适应，高度按比例缩放 */
+      .hero-logo-img {
+    /* --- 1. 基础设置 --- */
     width: 100%;
     height: auto;
+    /* 设置一个合适的最大宽度，让它在屏幕上看起来精致，不会大得吓人 */
+    max-width: 600px; 
 
-    /* 2. 最大宽度限制：
-       虽然原图很大，但为了网页排版美观，限制其在屏幕上的最大显示宽度。
-       800px 是一个在当前布局下非常合适的尺寸。*/
-    max-width: 800px;
+    /* --- 2. 核心技术：精准去除白边的柔光遮罩 --- */
+    
+    /* 强制占据正方形空间 */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
 
-    /* 3. 确保图片内容完整显示，不变形 */
-    object-fit: contain;
+    /* 关键命令：径向渐变遮罩
+       原理：我们像探照灯一样，只照亮中心区域。
+       - circle closest-side: 画一个以图片中心为圆心的正圆。
+       - black 50%: 中心 50% 的区域（ACIG字母和大脑）是完全保留的。
+       - transparent 85%: 重点在这里！从 50% 往外到 85% 的地方，让光线逐渐熄灭变成透明。
+       
+       为什么是 85%？因为您这张图的白色边角大概就在 85% 以外的区域。
+       这个设置能确保刚好把讨厌的白边全部切掉，只留下中间发光的圆形 Logo 完美融入深色背景。
+    */
+    -webkit-mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 85%);
+    mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 85%);
 
-    /* --- 关键修改 --- */
-    /* 移除之前代码中的 filter: drop-shadow(...)。
-       原因：您现在使用的图片自带了非常漂亮的柔和光晕边缘。
-       如果再叠加 CSS 投影，会导致柔边周围出现不自然的色块或方框。
-       现在让图片自带的柔光直接与深色背景融合效果最好。 */
-    filter: none;
+    /* --- 3. 效果锦上添花 --- */
+    /* 由于去掉了白底，稍微增加一点亮度和对比度，让 Logo 在深色背景上更通透、更精神 */
+    filter: brightness(1.15) contrast(1.2);
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
