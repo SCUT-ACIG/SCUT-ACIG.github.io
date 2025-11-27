@@ -103,7 +103,15 @@
             height: auto;
             max-width: 800px;
             object-fit: contain;
+        
+            /* --- 核心修改代码开始 --- */
+            /* 创建一个径向渐变遮罩：中间可见(黑色)，边缘透明 */
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            
+            /* 保留原来的阴影效果（可选） */
             filter: drop-shadow(0 10px 30px rgba(0, 210, 255, 0.2));
+            /* --- 核心修改代码结束 --- */
         }
 
         @keyframes floatImage {
