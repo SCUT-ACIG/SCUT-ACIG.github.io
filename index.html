@@ -98,34 +98,29 @@
             align-items: center;
         }
 
-      .hero-logo-img {
-    /* --- 1. 基础设置 --- */
+     .hero-logo-img {
+    /* 1. 尺寸与位置：保持之前的设定 */
     width: 100%;
     height: auto;
-    /* 设置一个合适的最大宽度，让它在屏幕上看起来精致，不会大得吓人 */
-    max-width: 600px; 
-
-    /* --- 2. 核心技术：精准去除白边的柔光遮罩 --- */
+    max-width: 650px; /* 稍微调大一点，显得大气 */
     
-    /* 强制占据正方形空间 */
+    /* 2. 切圆：这次我们切得干脆利落 */
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    
+    /* 【核心修正】 */
+    /* 之前是 black 50% -> transparent 85%，太虚了！*/
+    /* 现在改为 black 98% -> transparent 100% */
+    /* 意思是：中间 98% 的区域保持 100% 原样清晰，只有最后 2% 的边缘切掉白边。*/
+    -webkit-mask-image: radial-gradient(circle closest-side, black 98%, transparent 100%);
+    mask-image: radial-gradient(circle closest-side, black 98%, transparent 100%);
 
-    /* 关键命令：径向渐变遮罩
-       原理：我们像探照灯一样，只照亮中心区域。
-       - circle closest-side: 画一个以图片中心为圆心的正圆。
-       - black 50%: 中心 50% 的区域（ACIG字母和大脑）是完全保留的。
-       - transparent 85%: 重点在这里！从 50% 往外到 85% 的地方，让光线逐渐熄灭变成透明。
-       
-       为什么是 85%？因为您这张图的白色边角大概就在 85% 以外的区域。
-       这个设置能确保刚好把讨厌的白边全部切掉，只留下中间发光的圆形 Logo 完美融入深色背景。
-    */
-    -webkit-mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 85%);
-    mask-image: radial-gradient(circle closest-side at center, black 50%, transparent 85%);
-
-    /* --- 3. 效果锦上添花 --- */
-    /* 由于去掉了白底，稍微增加一点亮度和对比度，让 Logo 在深色背景上更通透、更精神 */
-    filter: brightness(1.15) contrast(1.2);
+    /* 3. 融合与提亮：让它看起来像发光的星球，而不是贴纸 */
+    /* lighten 模式：滤掉深色背景，保留发光部分，能极好地解决“紫色背景贴在蓝色网页上”的色差问题 */
+    mix-blend-mode: lighten; 
+    
+    /* 增加亮度和饱和度，让霓虹灯效果更炸裂 */
+    filter: brightness(1.3) contrast(1.1) saturate(1.2);
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
