@@ -98,27 +98,31 @@
             align-items: center;
         }
 
-   .hero-logo-img {
-    /* 1. 基础尺寸与位置 */
+  .hero-logo-img {
+    /* 1. 尺寸与位置 */
     width: 100%;
     height: auto;
-    max-width: 750px; /* 稍微放大一点，因为去背景后视觉体积会变小 */
+    max-width: 700px; /* 稍微放大一点，因为羽化会吃掉边缘 */
     display: block;
     margin: 0 auto;
 
-    /* 2. 【关键修改】混合模式：滤除背景 */
-    /* lighten 模式会让图片中“比背景色深”的像素变透明，保留发光部分 */
-    /* 这样深紫色的背景就会神奇地消失，只留下发光的 ACIG 文字 */
-    mix-blend-mode: lighten; 
+    /* 2. 【核心修正步骤一】物理切圆 */
+    /* 这一步确保正方形的四个角绝对不会出现 */
+    border-radius: 50%;
 
-    /* 3. 视觉增强 */
-    /* 稍微增加对比度，让霓虹灯主体更亮，背景更暗（更容易被滤除） */
-    filter: contrast(1.2) brightness(1.1) saturate(1.1);
+    /* 3. 【核心修正步骤二】边缘向内羽化 */
+    /* 解释：black 80% 意味着中心 80% 的区域是清晰的 */
+    /* transparent 100% 意味着最边缘是透明的 */
+    /* 80% 到 100% 之间的区域就是那个柔和过渡带 */
+    -webkit-mask-image: radial-gradient(circle closest-side, black 80%, transparent 100%);
+    mask-image: radial-gradient(circle closest-side, black 80%, transparent 100%);
+
+    /* 4. 视觉融合 (可选) */
+    /* 如果图片的黑色背景和网页背景有色差，打开下面这行 */
+    /* mix-blend-mode: lighten; */ 
     
-    /* 4. 删除之前的物理裁剪和遮罩，让它自然融合 */
-    /* border-radius: 50%;  <-- 删除 */
-    /* -webkit-mask-image: ... <-- 删除 */
-    /* mask-image: ... <-- 删除 */
+    /* 5. 增加一点通透感 */
+    filter: brightness(1.1) contrast(1.1);
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
