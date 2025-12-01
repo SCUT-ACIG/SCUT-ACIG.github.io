@@ -102,27 +102,23 @@
     /* 1. 基础尺寸与位置 */
     width: 100%;
     height: auto;
-    max-width: 650px; 
+    max-width: 750px; /* 稍微放大一点，因为去背景后视觉体积会变小 */
     display: block;
     margin: 0 auto;
 
-    /* 2. 物理裁剪：强制把正方形切成圆形 */
-    /* 这一步会切掉正方形图片四个多余的角 */
-    border-radius: 50%;
+    /* 2. 【关键修改】混合模式：滤除背景 */
+    /* lighten 模式会让图片中“比背景色深”的像素变透明，保留发光部分 */
+    /* 这样深紫色的背景就会神奇地消失，只留下发光的 ACIG 文字 */
+    mix-blend-mode: lighten; 
 
-    /* 3. 边缘柔和过渡 (关键步骤) */
-    /* 使用径向渐变遮罩：
-       closest-side: 确保渐变撑满这个圆。
-       black 60%: 中心 60% 的区域保持 100% 清晰。
-       transparent 100%: 从 60% 处开始向边缘逐渐变透明，直到 100% 处完全消失。
-       这样就消除了“切圆”后留下的那条硬邦邦的边界线。
-    */
-    -webkit-mask-image: radial-gradient(circle closest-side, black 60%, transparent 100%);
-    mask-image: radial-gradient(circle closest-side, black 60%, transparent 100%);
-
-    /* 4. 质感微调 */
-    /* 稍微提亮一点，让它在深色背景上更通透 */
-    filter: brightness(1.05) saturate(1.1);
+    /* 3. 视觉增强 */
+    /* 稍微增加对比度，让霓虹灯主体更亮，背景更暗（更容易被滤除） */
+    filter: contrast(1.2) brightness(1.1) saturate(1.1);
+    
+    /* 4. 删除之前的物理裁剪和遮罩，让它自然融合 */
+    /* border-radius: 50%;  <-- 删除 */
+    /* -webkit-mask-image: ... <-- 删除 */
+    /* mask-image: ... <-- 删除 */
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
