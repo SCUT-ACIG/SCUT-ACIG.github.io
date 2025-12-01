@@ -98,29 +98,35 @@
             align-items: center;
         }
 
-     .hero-logo-img {
-    /* 1. 尺寸与位置：保持之前的设定 */
+    .hero-logo-img {
+    /* 1. 尺寸与显示 */
     width: 100%;
     height: auto;
-    max-width: 650px; /* 稍微调大一点，显得大气 */
-    
-    /* 2. 切圆：这次我们切得干脆利落 */
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    
-    /* 【核心修正】 */
-    /* 之前是 black 50% -> transparent 85%，太虚了！*/
-    /* 现在改为 black 98% -> transparent 100% */
-    /* 意思是：中间 98% 的区域保持 100% 原样清晰，只有最后 2% 的边缘切掉白边。*/
-    -webkit-mask-image: radial-gradient(circle closest-side, black 98%, transparent 100%);
-    mask-image: radial-gradient(circle closest-side, black 98%, transparent 100%);
+    max-width: 650px; /* 保持您期望的大气尺寸 */
+    display: block;   /* 防止图片底部出现莫名的空隙 */
+    margin: 0 auto;   /* 居中显示 */
 
-    /* 3. 融合与提亮：让它看起来像发光的星球，而不是贴纸 */
-    /* lighten 模式：滤掉深色背景，保留发光部分，能极好地解决“紫色背景贴在蓝色网页上”的色差问题 */
-    mix-blend-mode: lighten; 
-    
-    /* 增加亮度和饱和度，让霓虹灯效果更炸裂 */
-    filter: brightness(1.3) contrast(1.1) saturate(1.2);
+    /* ---- 核心无痕过渡技术 ---- */
+
+    /* 2. 柔性边缘遮罩 (Soft Edge Mask) */
+    /* 使用径向渐变创建一个柔和的遮罩。
+       circle at center: 从中心开始的圆形渐变。
+       black 60%: 中心 60% 的区域是完全不透明的，清晰展示 Logo 主体。
+       transparent 100%: 从 60% 到 100% 的边缘区域，图片逐渐变得透明。
+       渐变范围从之前的 25% 增加到了 40%，使得过渡非常柔和自然，完全消除了硬边。
+    */
+    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+
+    /* 3. 质感增强 (可选) */
+    /* 稍微提升一点亮度和饱和度，让霓虹灯效果更鲜明，但保持自然 */
+    filter: brightness(1.05) saturate(1.1);
+
+    /* 注意：
+       - 已移除 box-shadow，去掉了发光效果。
+       - 已移除 mix-blend-mode，还原 Logo 真实色彩。
+       - 已移除 aspect-ratio 和 object-fit，因为您使用的是 image_2.png，它本身就是完美的构图。
+    */
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
