@@ -98,35 +98,31 @@
             align-items: center;
         }
 
-    .hero-logo-img {
-    /* 1. 尺寸与显示 */
+   .hero-logo-img {
+    /* 1. 基础尺寸与位置 */
     width: 100%;
     height: auto;
-    max-width: 650px; /* 保持您期望的大气尺寸 */
-    display: block;   /* 防止图片底部出现莫名的空隙 */
-    margin: 0 auto;   /* 居中显示 */
+    max-width: 650px; 
+    display: block;
+    margin: 0 auto;
 
-    /* ---- 核心无痕过渡技术 ---- */
+    /* 2. 物理裁剪：强制把正方形切成圆形 */
+    /* 这一步会切掉正方形图片四个多余的角 */
+    border-radius: 50%;
 
-    /* 2. 柔性边缘遮罩 (Soft Edge Mask) */
-    /* 使用径向渐变创建一个柔和的遮罩。
-       circle at center: 从中心开始的圆形渐变。
-       black 60%: 中心 60% 的区域是完全不透明的，清晰展示 Logo 主体。
-       transparent 100%: 从 60% 到 100% 的边缘区域，图片逐渐变得透明。
-       渐变范围从之前的 25% 增加到了 40%，使得过渡非常柔和自然，完全消除了硬边。
+    /* 3. 边缘柔和过渡 (关键步骤) */
+    /* 使用径向渐变遮罩：
+       closest-side: 确保渐变撑满这个圆。
+       black 60%: 中心 60% 的区域保持 100% 清晰。
+       transparent 100%: 从 60% 处开始向边缘逐渐变透明，直到 100% 处完全消失。
+       这样就消除了“切圆”后留下的那条硬邦邦的边界线。
     */
-    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
-    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle closest-side, black 60%, transparent 100%);
+    mask-image: radial-gradient(circle closest-side, black 60%, transparent 100%);
 
-    /* 3. 质感增强 (可选) */
-    /* 稍微提升一点亮度和饱和度，让霓虹灯效果更鲜明，但保持自然 */
+    /* 4. 质感微调 */
+    /* 稍微提亮一点，让它在深色背景上更通透 */
     filter: brightness(1.05) saturate(1.1);
-
-    /* 注意：
-       - 已移除 box-shadow，去掉了发光效果。
-       - 已移除 mix-blend-mode，还原 Logo 真实色彩。
-       - 已移除 aspect-ratio 和 object-fit，因为您使用的是 image_2.png，它本身就是完美的构图。
-    */
 }
         @keyframes floatImage {
             from { transform: translateY(0); }
