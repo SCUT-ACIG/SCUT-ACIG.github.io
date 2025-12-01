@@ -47,10 +47,10 @@
         }
         
         /* --- NEW Split Hero Header --- */
-        /* --- NEW Split Hero Header (配色优化版) --- */
+      
         .hero-section {
-            /* 【核心修改】背景色改为：深邃夜空黑 -> 融合Logo的深紫色 */
-            /* 这样 Header 右侧的紫色就能和 Logo 的背景融为一体 */
+       
+           
             background: linear-gradient(110deg, #050a10 0%, #1a1025 60%, #2e1035 100%);
             color: white;
             position: relative;
@@ -60,17 +60,17 @@
             align-items: center;
         }
         
-        /* 背景氛围光效 - 调整位置和颜色以匹配 Logo 的发光点 */
+    
         .hero-section::before, .hero-section::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            filter: blur(90px); /* 增加模糊度，让光更柔和 */
-            opacity: 0.2;       /* 稍微调高不透明度，增加氛围感 */
+            filter: blur(90px); 
+            opacity: 0.2;      
             z-index: 1;
         }
         
-        /* 右上角光斑：改为洋红色/紫色，呼应 Logo 右侧 */
+      
         .hero-section::before {
             top: -30%; 
             right: -10%; 
@@ -80,7 +80,7 @@
             animation: floatBubble 20s infinite ease-in-out;
         }
         
-        /* 左下角光斑：改为青色/电光蓝，呼应 Logo 左侧 */
+       
         .hero-section::after {
             bottom: -30%; 
             left: -10%; 
@@ -268,7 +268,7 @@
             line-height: 1.9;
             margin-bottom: 20px;
             color: var(--text-light);
-            max-width: 900px;
+            max-width: 1100px;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
