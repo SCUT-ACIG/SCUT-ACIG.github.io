@@ -47,8 +47,11 @@
         }
         
         /* --- NEW Split Hero Header --- */
+        /* --- NEW Split Hero Header (配色优化版) --- */
         .hero-section {
-            background: linear-gradient(135deg, #121a24 0%, #1e2a38 50%, #2c1e30 100%);
+            /* 【核心修改】背景色改为：深邃夜空黑 -> 融合Logo的深紫色 */
+            /* 这样 Header 右侧的紫色就能和 Logo 的背景融为一体 */
+            background: linear-gradient(110deg, #050a10 0%, #1a1025 60%, #2e1035 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -57,21 +60,41 @@
             align-items: center;
         }
         
+        /* 背景氛围光效 - 调整位置和颜色以匹配 Logo 的发光点 */
         .hero-section::before, .hero-section::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
+            filter: blur(90px); /* 增加模糊度，让光更柔和 */
+            opacity: 0.2;       /* 稍微调高不透明度，增加氛围感 */
             z-index: 1;
         }
+        
+        /* 右上角光斑：改为洋红色/紫色，呼应 Logo 右侧 */
         .hero-section::before {
-            top: -20%; right: -10%; width: 600px; height: 600px;
-            background: var(--accent-purple);
+            top: -30%; 
+            right: -10%; 
+            width: 700px; 
+            height: 700px;
+            background: radial-gradient(circle, #d646c8 0%, transparent 70%);
+            animation: floatBubble 20s infinite ease-in-out;
         }
+        
+        /* 左下角光斑：改为青色/电光蓝，呼应 Logo 左侧 */
         .hero-section::after {
-            bottom: -20%; left: -10%; width: 500px; height: 500px;
-            background: var(--accent-cyan);
+            bottom: -30%; 
+            left: -10%; 
+            width: 600px; 
+            height: 600px;
+            background: radial-gradient(circle, #00d2ff 0%, transparent 70%);
+            animation: floatBubble 15s infinite ease-in-out reverse;
+        }
+
+        /* 简单的浮动动画 */
+        @keyframes floatBubble {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+            100% { transform: translate(0, 0); }
         }
         
         .hero-container {
@@ -85,7 +108,6 @@
             position: relative;
             z-index: 10;
         }
-
         .hero-text {
             flex: 1;
             max-width: 600px;
